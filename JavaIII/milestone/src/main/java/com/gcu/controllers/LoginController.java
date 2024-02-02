@@ -2,6 +2,8 @@ package com.gcu.controllers;
 
 import com.gcu.models.LoginModel;
 
+import jakarta.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,7 +26,7 @@ public class LoginController {
     }
 
     @PostMapping("/doLogin")
-    public String doLogin(LoginModel loginModel, BindingResult bindingResult, Model model) {
+    public String doLogin(@Valid LoginModel loginModel, BindingResult bindingResult, Model model) {
         // check for validation errors
     	if (bindingResult.hasErrors()) {
     		model.addAttribute("title", "Login Form");
