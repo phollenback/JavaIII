@@ -4,9 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MilestoneApplication {
+public class Milestone {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MilestoneApplication.class, args);
+		SpringApplication.run(Milestone.class, args);
 	}
+
 }
