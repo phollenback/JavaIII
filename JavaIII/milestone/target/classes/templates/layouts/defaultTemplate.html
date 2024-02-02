@@ -1,0 +1,29 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<style type="text/css">.bs-example { margin: 20px; }</style>
+
+</head>
+
+<body>
+
+	<div align="center">
+		<!-- insert header fragment -->
+		<div th:replace="layouts/common :: header">My Header</div>
+		
+		<!-- Main Body Content -->
+		<section layout:fragment="content">
+			<p>My Body Contents</p>
+		</section>
+		
+		<!-- Insert Footer Fragment -->
+		<div th:replace="layouts/common :: footer">My Footer</div>
+		
+		
+	</div>
+</body>
