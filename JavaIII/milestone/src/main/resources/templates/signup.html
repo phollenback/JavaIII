@@ -1,16 +1,17 @@
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/starterTemplate"></html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/starterTemplate">
     <body>
         <div layout:fragment="content">
-            <input action="#" th:action="@{doSignup}" th:object="${signupModel}" method="post" />
             <h2 align="center">Sign Up!</h2>
+
+            <!-- Your form goes here -->
+            <form action="#" th:action="@{doSignup}" th:object="${signupModel}" method="post">
+                <!-- Add your form fields here -->
+
+                <input type="submit" value="Submit" />
+            </form>
+
             <!-- Table with forms -->
-
-            
-            
-
-
-
+            <!-- Add your table or other content here -->
         </div>
     </body>
 </html>
