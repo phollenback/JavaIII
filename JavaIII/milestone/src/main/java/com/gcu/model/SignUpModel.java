@@ -2,6 +2,7 @@ package com.gcu.model;
 
 public class SignUpModel 
 {
+    
     private String firstName;
     private String lastName;
     private String email;
