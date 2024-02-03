@@ -1,18 +1,14 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head>
-    <meta charset="UTF-8">
-    <title>Starter Page</title>
-</head>
-<body>
-    <h2>Welcome to the Starter Page</h2>
-    
-    <form action="/login" method="get">
-        <button type="submit">Login</button>
-    </form>
-    
-    <form action="/signup" method="get">
-        <button type="submit">Sign Up</button>
-    </form>
-</body>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/starterTemplate">
+    <body>
+        <div layout:fragment="content" class="flex-container">
+            <form method="get" action="/signup">
+                <!-- Your signup form content goes here -->
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </form>
+            <form method="get" action="/login">
+                <!-- Your login form content goes here -->
+                <button type="submit" class="btn btn-success">Login</button>
+            </form>
+        </div>     
+    </body>
 </html>
