@@ -1,11 +1,10 @@
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/defaultTemplate">
-
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <body>
     <div layout:fragment="content">
         <form action="#" th:action="@{doLogin}" th:object="${loginModel}" method="post">
             <table>
                 <tr>
-                    <td>User Name:</td>
+                    <td>UserName:</td>
                     <td><input type="text" th:field="*{username}"></td>
                     <td><h5 style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">User Name Error</h5></td>
                 </tr>
