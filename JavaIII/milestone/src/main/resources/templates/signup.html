@@ -1,5 +1,11 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/starterTemplate">
-    <body>
+    <head>
+        <style>
+            body {
+                background: linear-gradient(to right, #12C2E9, #F64F59);            }
+        </style>
+    </head>
+    <body style="justify-content: center; align-items: center; display: flex;">
         <div layout:fragment="content">
             <h2 align="center">Sign Up!</h2>
 
@@ -7,11 +13,39 @@
             <form action="#" th:action="@{doSignup}" th:object="${signupModel}" method="post">
                 <!-- Add your form fields here -->
 
-                <input type="submit" value="Submit" />
             </form>
 
-            <!-- Table with forms -->
-            <!-- Add your table or other content here -->
+            <div class="flex-container">
+                <form class="form-inline">
+                    <div class="form-group">
+                      <label for="exampleInputName2">First Name</label>
+                      <input type="text" class="form-control" th:field="*{firstName}" placeholder="James">
+                    </div><br>
+                    <div class="form-group">
+                        <label for="exampleInputName2">Last Name</label>
+                        <input type="text" class="form-control" th:field="*{lastName}" placeholder="Murray">
+                    </div><br>
+                    
+                    <div class="form-group">
+                        <label for="exampleInputName2">Username</label>
+                        <input type="text" class="form-control" th:field="*{username}" placeholder="jmurr25">
+                    </div><br>
+                    <div class="form-group">
+                      <label for="exampleInputEmail2">Password</label>
+                      <input type="email" class="form-control" th:field="*{password}" placeholder="murrMan">
+                    </div><br>
+                    <div class="form-group">
+                        <label for="exampleInputEmail2">Phone #</label>
+                        <input type="email" class="form-control" th:field="*{phoneNumber}" placeholder="(000) 123-4567">
+                    </div><br>
+                    <div class="form-group">
+                        <label for="exampleInputEmail2">Email</label>
+                        <input type="email" class="form-control" th:field="*{email}" placeholder="porfol@io.com">
+                    </div><br>
+                    <input type="submit" class="btn btn-primary" value="Submit">
+                  </form>
+                
+            </div>
         </div>
     </body>
 </html>
