@@ -110,7 +110,7 @@ public class HomeController {
     {
         
         // Display Sign Up Form View
-        model.addAttribute("title", "Sign Up Form");
+        model.addAttribute("title", "Sign Up Here!");
         model.addAttribute("signUpModel", new SignUpModel());
         return "signup";
     }
@@ -124,7 +124,7 @@ public class HomeController {
     @GetMapping("/login")
     public String showLoginPage(Model model) {
         // Display Login Form View
-        model.addAttribute("title", "Login Form");
+        model.addAttribute("title", "Login Here!");
         model.addAttribute("loginModel", new LoginModel());
         return "login";
     }
@@ -141,7 +141,7 @@ public class HomeController {
     public String doLogin(@Valid LoginModel loginModel, BindingResult bindingResult, Model model) {
         // check for validation errors
         if (bindingResult.hasErrors()) {
-            model.addAttribute("title", "Login Form");
+            model.addAttribute("title", "Login Here!");
             return "login";
         }
 
@@ -153,7 +153,7 @@ public class HomeController {
     {
         if(bindingResult.hasErrors())
         {
-            model.addAttribute("title", "Sign Up Form");
+            model.addAttribute("title", "Sign Up Here!");
             return "signup";
         }
 
