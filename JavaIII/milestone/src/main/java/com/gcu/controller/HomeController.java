@@ -20,7 +20,7 @@ import jakarta.validation.Valid;
 @RequestMapping("/")
 public class HomeController {
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public String showHomePage(Model model) {
 
         List<PostModel> postModels = new ArrayList<>();
@@ -115,12 +115,18 @@ public class HomeController {
             return "Login";
         }
 
-        return "redirect:/home";
+        return "redirect:/";
     }
 
     @PostMapping("/doSignup")
     public String doSignUp(SignUpModel signupModel, BindingResult bindingResult, Model model) {
-        return "redirect:/home";
+        return "redirect:/";
+    }
+
+    @GetMapping("/signIn")
+    public String showStarterPage(Model model) {
+        model.addAttribute("title", "Portfol.io");
+        return "signIn";
     }
 }
 
