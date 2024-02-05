@@ -22,7 +22,9 @@ public class HomeController {
     }
 
     @GetMapping("/signup")
-    public String showSignUpPage(Model model) {
+    public String showSignUpPage(Model model) 
+    {
+        
         // Display Sign Up Form View
         model.addAttribute("title", "Sign Up Form");
         model.addAttribute("signupModel", new SignUpModel());
@@ -49,7 +51,14 @@ public class HomeController {
     }
 
     @PostMapping("/doSignup")
-    public String doSignUp(SignUpModel signupModel, BindingResult bindingResult, Model model) {
+    public String doSignUp(SignUpModel signupModel, BindingResult bindingResult, Model model) 
+    {
+        if(bindingResult.hasErrors())
+        {
+            model.addAttribute("title", "Sign Up Form");
+            return "signup";
+        }
+
         return "redirect:/home";
     }
 }
