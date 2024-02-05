@@ -159,5 +159,16 @@ public class HomeController {
 
         return "redirect:/";
     }
+
+     /**
+     * Displays the starter page for user sign-in.
+     * @param model the Spring MVC model for rendering the view
+     * @return the view name for the sign-in page
+     */
+    @GetMapping("/signIn")
+    public String showStarterPage(Model model) {
+        model.addAttribute("title", "Portfol.io");
+        return "signIn";
+    }
 }
 
