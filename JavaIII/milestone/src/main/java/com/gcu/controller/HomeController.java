@@ -16,10 +16,18 @@ import com.gcu.model.SignUpModel;
 
 import jakarta.validation.Valid;
 
+/**
+ * Handles requests related to the home page, sign-up, login, and user sign-in.
+ */
 @Controller
 @RequestMapping("/")
 public class HomeController {
 
+    /**
+     * Displays the home page with a list of post models.
+     * @param model the Spring MVC model for rendering the view
+     * @return the view name for the home page
+     */
     @GetMapping("/")
     public String showHomePage(Model model) {
 
@@ -91,6 +99,12 @@ public class HomeController {
         return "home";
     }
 
+    
+    /**
+     * Displays the sign-up form view.
+     * @param model the Spring MVC model for rendering the view
+     * @return the view name for the sign-up page
+     */
     @GetMapping("/signup")
     public String showSignUpPage(Model model) {
         // Display Sign Up Form View
@@ -99,6 +113,12 @@ public class HomeController {
         return "signup";
     }
 
+
+    /**
+     * Displays the login form view.
+     * @param model the Spring MVC model for rendering the view
+     * @return the view name for the login page
+     */
     @GetMapping("/login")
     public String showLoginPage(Model model) {
         // Display Login Form View
@@ -107,6 +127,14 @@ public class HomeController {
         return "login";
     }
 
+
+    /**
+     * Handles the login form submission.
+     * @param loginModel the model representing the login form data
+     * @param bindingResult the Spring MVC binding result for validation
+     * @param model the Spring MVC model for rendering the view
+     * @return the view name for redirection after login
+     */
     @PostMapping("/doLogin")
     public String doLogin(@Valid LoginModel loginModel, BindingResult bindingResult, Model model) {
         // check for validation errors
@@ -118,11 +146,25 @@ public class HomeController {
         return "redirect:/";
     }
 
+
+    /**
+     * Handles the sign-up form submission.
+     * @param signupModel the model representing the sign-up form data
+     * @param bindingResult the Spring MVC binding result for validation
+     * @param model the Spring MVC model for rendering the view
+     * @return the view name for redirection after sign-up
+     */
     @PostMapping("/doSignup")
     public String doSignUp(SignUpModel signupModel, BindingResult bindingResult, Model model) {
         return "redirect:/";
     }
 
+
+    /**
+     * Displays the starter page for user sign-in.
+     * @param model the Spring MVC model for rendering the view
+     * @return the view name for the sign-in page
+     */
     @GetMapping("/signIn")
     public String showStarterPage(Model model) {
         model.addAttribute("title", "Portfol.io");
