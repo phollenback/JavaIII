@@ -2,6 +2,7 @@ package com.gcu.model;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+
 public class SignUpModel 
 {
     @NotNull(message="First Name is Required")
@@ -15,18 +16,13 @@ public class SignUpModel
     private String email;
     @NotNull(message="Phone Number is Required")
     @Size(min=1, max=32, message="User name must be between 1 and 32 characters")
-    private int phoneNumber;
+    private String phoneNumber;
     @NotNull(message="Username is Required")
     @Size(min=1, max=32, message="User name must be between 1 and 32 characters")
     private String username;
     @NotNull(message="Password is Required")
     @Size(min=1, max=32, message="User name must be between 1 and 32 characters")
     private String password;
-    
-    public SignUpModel()
-    {
-
-    }
     
     public String getFirstName() {
         return firstName;
@@ -46,10 +42,10 @@ public class SignUpModel
     public void setEmail(String email) {
         this.email = email;
     }
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
     public String getUsername() {

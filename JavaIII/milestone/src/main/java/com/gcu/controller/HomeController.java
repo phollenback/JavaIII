@@ -44,14 +44,14 @@ public class HomeController {
         // check for validation errors
         if (bindingResult.hasErrors()) {
             model.addAttribute("title", "Login Form");
-            return "Login";
+            return "login";
         }
 
         return "redirect:/home";
     }
 
     @PostMapping("/doSignup")
-    public String doSignUp(SignUpModel signupModel, BindingResult bindingResult, Model model) 
+    public String doSignUp(@Valid SignUpModel signupModel, BindingResult bindingResult, Model model) 
     {
         if(bindingResult.hasErrors())
         {
