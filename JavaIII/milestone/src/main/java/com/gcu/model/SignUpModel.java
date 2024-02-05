@@ -7,22 +7,32 @@ public class SignUpModel
 {
     @NotNull(message="First Name is Required")
     @Size(min=1, max=32, message="User name must be between 1 and 32 characters")
-    private String firstName;
+    private String firstName = "";
+
+
     @NotNull(message="Last Name is Required")
     @Size(min=1, max=32, message="User name must be between 1 and 32 characters")
-    private String lastName;
+    private String lastName = "";
+
+
     @NotNull(message="Email is Required")
     @Size(min=1, max=32, message="User name must be between 1 and 32 characters")
-    private String email;
+    private String email = "";
+
+
     @NotNull(message="Phone Number is Required")
     @Size(min=1, max=32, message="User name must be between 1 and 32 characters")
-    private String phoneNumber;
+    private String phoneNumber = "";
+
+
     @NotNull(message="Username is Required")
     @Size(min=1, max=32, message="User name must be between 1 and 32 characters")
-    private String username;
+    private String username = "";
+
+    
     @NotNull(message="Password is Required")
     @Size(min=1, max=32, message="User name must be between 1 and 32 characters")
-    private String password;
+    private String password = "";
     
     public String getFirstName() {
         return firstName;

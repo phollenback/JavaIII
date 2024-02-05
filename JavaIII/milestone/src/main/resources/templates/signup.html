@@ -11,7 +11,7 @@
 
             <!-- Forms -->
             <div class="flex-container">
-                <form class="form-inline" action="#" th:action="@{doSignup}" th:object="${signupModel}" method="post">
+                <form class="form-inline" action="#" th:action="@{doSignUp}" th:object="${signUpModel}" method="post">
                     <div class="form-group">
                       <label for="exampleInputName2">First Name</label>
                       <input type="text" class="form-control" th:field="*{firstName}" placeholder="James">
