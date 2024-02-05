@@ -4,12 +4,12 @@
         <form class="form-inline" action="#" th:action="@{doLogin}" th:object="${loginModel}" method="post">
             <div class="form-group">
                 <label for="exampleInputName2">Username</label>
-                <input type="text" class="form-control" th:field="*{username}" placeholder="jmurr25">
+                <input type="text" class="form-control" th:field="*{username}" placeholder="HudsonHughes23">
                 <h5 style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</h5>
             </div><br><br>
             <div class="form-group">
               <label for="exampleInputEmail2">Password</label>
-              <input type="text" class="form-control" th:field="*{password}" placeholder="murrMan">
+              <input type="text" class="form-control" th:field="*{password}" placeholder="Pazzword23">
               <h5 style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</h5>
             </div><br>
             <button type="submit" class="btn btn-primary" value="Submit">Submit</button>

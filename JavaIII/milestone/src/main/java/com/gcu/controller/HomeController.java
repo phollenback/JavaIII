@@ -147,7 +147,14 @@ public class HomeController {
 
         return "redirect:/";
     }
-
+    /**
+     * Handles the sign-up form submission.
+     *
+     * @param signUpModel   the model representing the sign-up form data
+     * @param bindingResult the Spring MVC binding result for validation
+     * @param model         the Spring MVC model for rendering the view
+     * @return the view name for redirection after sign-up
+     */
     @PostMapping("/doSignUp")
     public String doSignUp(@Valid SignUpModel signUpModel, BindingResult bindingResult, Model model) 
     {
