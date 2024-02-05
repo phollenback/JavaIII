@@ -1,8 +1,51 @@
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/signInTemplate">
-    <body>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/starterTemplate">
+    <head>
+        <style>
+            body {
+                background: linear-gradient(to right, #12C2E9, #F64F59);            }
+        </style>
+    </head>
+    <body style="justify-content: center; align-items: center; display: flex;">
         <div layout:fragment="content">
-            <form action="#" th:action="@{doSignup}" th:object="${signupModel}" method="post">
-            <input type="submit" value="Submit" />
+            <h2 align="center">Sign Up!</h2>
+
+            <!-- Forms -->
+            <div class="flex-container">
+                <form class="form-inline" action="#" th:action="@{doSignUp}" th:object="${signUpModel}" method="post">
+                    <div class="form-group">
+                      <label for="exampleInputName2">First Name</label>
+                      <input type="text" class="form-control" th:field="*{firstName}" placeholder="James">
+                      <h5 style="color:red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</h5>
+                    </div><br><br>
+                    <div class="form-group">
+                        <label for="exampleInputName2">Last Name</label>
+                        <input type="text" class="form-control" th:field="*{lastName}" placeholder="Murray">
+                        <h5 style="color:red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last Name Error</h5>
+                    </div><br><br>
+                    
+                    <div class="form-group">
+                        <label for="exampleInputName2">Username</label>
+                        <input type="text" class="form-control" th:field="*{username}" placeholder="jmurr25">
+                        <h5 style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</h5>
+                    </div><br><br>
+                    <div class="form-group">
+                      <label for="exampleInputEmail2">Password</label>
+                      <input type="text" class="form-control" th:field="*{password}" placeholder="murrMan">
+                      <h5 style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</h5>
+                    </div><br><br>
+                    <div class="form-group">
+                        <label for="exampleInputEmail2">Phone #</label>
+                        <input type="text" class="form-control" th:field="*{phoneNumber}" placeholder="(000) 123-4567">
+                        <h5 style="color:red" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">Phone Number Error</h5>
+                    </div><br><br>
+                    <div class="form-group">
+                        <label for="exampleInputEmail2">Email</label>
+                        <input type="text" class="form-control" th:field="*{email}" placeholder="porfol@io.com">
+                        <h5 style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</h5>
+                    </div><br>
+                    <input type="submit" class="btn btn-primary" value="Submit">
+                  </form>
+            </div>
         </div>
     </body>
 </html>

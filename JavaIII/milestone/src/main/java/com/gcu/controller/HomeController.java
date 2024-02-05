@@ -106,10 +106,12 @@ public class HomeController {
      * @return the view name for the sign-up page
      */
     @GetMapping("/signup")
-    public String showSignUpPage(Model model) {
+    public String showSignUpPage(Model model) 
+    {
+        
         // Display Sign Up Form View
         model.addAttribute("title", "Sign Up Form");
-        model.addAttribute("signupModel", new SignUpModel());
+        model.addAttribute("signUpModel", new SignUpModel());
         return "signup";
     }
 
@@ -140,27 +142,25 @@ public class HomeController {
         // check for validation errors
         if (bindingResult.hasErrors()) {
             model.addAttribute("title", "Login Form");
-            return "Login";
+            return "login";
         }
 
         return "redirect:/";
     }
 
+    @PostMapping("/doSignUp")
+    public String doSignUp(@Valid SignUpModel signUpModel, BindingResult bindingResult, Model model) 
+    {
+        if(bindingResult.hasErrors())
+        {
+            model.addAttribute("title", "Sign Up Form");
+            return "signup";
+        }
 
-    /**
-     * Handles the sign-up form submission.
-     * @param signupModel the model representing the sign-up form data
-     * @param bindingResult the Spring MVC binding result for validation
-     * @param model the Spring MVC model for rendering the view
-     * @return the view name for redirection after sign-up
-     */
-    @PostMapping("/doSignup")
-    public String doSignUp(SignUpModel signupModel, BindingResult bindingResult, Model model) {
         return "redirect:/";
     }
 
-
-    /**
+     /**
      * Displays the starter page for user sign-in.
      * @param model the Spring MVC model for rendering the view
      * @return the view name for the sign-in page
