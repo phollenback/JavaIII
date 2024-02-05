@@ -6,32 +6,32 @@ import jakarta.validation.constraints.Size;
 public class SignUpModel 
 {
     @NotNull(message="First Name is Required")
-    @Size(min=1, max=32, message="User name must be between 1 and 32 characters")
+    @Size(min=1, max=32, message="First Name must be between 1 and 32 characters")
     private String firstName = "";
 
 
     @NotNull(message="Last Name is Required")
-    @Size(min=1, max=32, message="User name must be between 1 and 32 characters")
+    @Size(min=1, max=32, message="Last Name must be between 1 and 32 characters")
     private String lastName = "";
 
 
     @NotNull(message="Email is Required")
-    @Size(min=1, max=32, message="User name must be between 1 and 32 characters")
+    @Size(min=1, max=32, message="Email must be between 1 and 32 characters")
     private String email = "";
 
 
     @NotNull(message="Phone Number is Required")
-    @Size(min=1, max=32, message="User name must be between 1 and 32 characters")
+    @Size(min=1, max=32, message="Phone Number must be between 1 and 32 characters")
     private String phoneNumber = "";
 
 
     @NotNull(message="Username is Required")
-    @Size(min=1, max=32, message="User name must be between 1 and 32 characters")
+    @Size(min=1, max=32, message="Username must be between 1 and 32 characters")
     private String username = "";
 
     
     @NotNull(message="Password is Required")
-    @Size(min=1, max=32, message="User name must be between 1 and 32 characters")
+    @Size(min=1, max=32, message="Password must be between 1 and 32 characters")
     private String password = "";
     
     public String getFirstName() {

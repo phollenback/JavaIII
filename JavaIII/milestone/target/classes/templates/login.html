@@ -1,28 +1,18 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/signInTemplate">
 <body>
     <div class="container" layout:fragment="content">
-        <form action="#" th:action="@{doLogin}" th:object="${loginModel}" method="post">
-            <table>
-                <tr>
-                    <td>UserName:</td>
-                    <td><input type="text" th:field="*{username}"></td>
-                    <td><h5 style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">User Name Error</h5></td>
-                </tr>
-                
-                <tr>
-                    <td>Password:</td>
-                    <td><input type="password" th:field="*{password}"></td>
-                    <td><h5 style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</h5></td>
-                </tr>
-                
-                <tr>
-                    <td colspan="3"><input type="submit" value="Submit" /></td>
-                </tr>
-            </table>
-            <div th:if="${#fields.hasErrors('*')}">List of Errors</div>
-            <div th:each="err: ${#fields.errors('*')}">
-                <span style="color:red" th:text="${err}" class="fieldError"></span>
-            </div>
+        <form class="form-inline" action="#" th:action="@{doLogin}" th:object="${loginModel}" method="post">
+            <div class="form-group">
+                <label for="exampleInputName2">Username</label>
+                <input type="text" class="form-control" th:field="*{username}" placeholder="jmurr25">
+                <h5 style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</h5>
+            </div><br><br>
+            <div class="form-group">
+              <label for="exampleInputEmail2">Password</label>
+              <input type="text" class="form-control" th:field="*{password}" placeholder="murrMan">
+              <h5 style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</h5>
+            </div><br>
+            <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
         </form>
     </div>
 </body>
