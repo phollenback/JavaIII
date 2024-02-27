@@ -75,6 +75,7 @@ public class HomeController {
             return "login";
         }
 
+        // Utilize the Login Service to check for user existence and login
         if(ls.checkUserExistence(loginModel))
             return "redirect:/";
             
@@ -107,13 +108,14 @@ public class HomeController {
     @PostMapping("/doSignUp")
     public String doSignUp(@Valid SignUpModel signUpModel, BindingResult bindingResult, Model model) 
     {
-        
+        // check for validation errors 
         if(bindingResult.hasErrors())
         {
             model.addAttribute("title", "Sign Up Here!");
             return "signup";
         }
-        
+
+        // Utilize the Registration Service to initialize the user
         if(rs.initializeUser(signUpModel))
             return "redirect:/";
             
