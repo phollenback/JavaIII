@@ -102,14 +102,16 @@ public class HomeController {
     @PostMapping("/doSignUp")
     public String doSignUp(@Valid SignUpModel signUpModel, BindingResult bindingResult, Model model) 
     {
+        
         if(bindingResult.hasErrors())
         {
             model.addAttribute("title", "Sign Up Here!");
             return "signup";
         }
+        
         if(rs.initializeUser(signUpModel))
             return "redirect:/";
-        
+            
         return "signup";
     }
 
