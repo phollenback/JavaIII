@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
  
+import com.gcu.business.LoginService;
 import com.gcu.business.RegistrationService;
 import com.gcu.business.PostServiceInterface;
 import com.gcu.model.LoginModel;
@@ -25,6 +26,8 @@ import jakarta.validation.Valid;
 @Controller
 @RequestMapping("/")
 public class HomeController {
+    @Autowired
+    private LoginService ls;
     @Autowired
     private RegistrationService rs;
     @Autowired
@@ -42,23 +45,6 @@ public class HomeController {
         model.addAttribute("posts", posts);
         return "home";
     }
-
-    
-    /**
-     * Displays the sign-up form view.
-     * @param model the Spring MVC model for rendering the view
-     * @return the view name for the sign-up page
-     */
-    @GetMapping("/signup")
-    public String showSignUpPage(Model model) 
-    {
-        
-        // Display Sign Up Form View
-        model.addAttribute("title", "Sign Up Here!");
-        model.addAttribute("signUpModel", new SignUpModel());
-        return "signup";
-    }
-
 
     /**
      * Displays the login form view.
@@ -89,8 +75,27 @@ public class HomeController {
             return "login";
         }
 
-        return "redirect:/";
+        if(ls.checkUserExistence(loginModel))
+            return "redirect:/";
+            
+        return "login";
     }
+
+    /**
+     * Displays the sign-up form view.
+     * @param model the Spring MVC model for rendering the view
+     * @return the view name for the sign-up page
+     */
+    @GetMapping("/signup")
+    public String showSignUpPage(Model model) 
+    {
+        
+        // Display Sign Up Form View
+        model.addAttribute("title", "Sign Up Here!");
+        model.addAttribute("signUpModel", new SignUpModel());
+        return "signup";
+    }
+
     /**
      * Handles the sign-up form submission.
      *
@@ -166,7 +171,6 @@ public class HomeController {
 
 
         return "redirect:/";
-        
     }
 
 }   
