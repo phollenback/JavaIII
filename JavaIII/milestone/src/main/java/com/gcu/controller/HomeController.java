@@ -1,16 +1,17 @@
 package com.gcu.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+ 
 import com.gcu.business.RegistrationService;
+import com.gcu.business.PostServiceInterface;
 import com.gcu.model.LoginModel;
 import com.gcu.model.PostModel;
 import com.gcu.model.SignUpModel;
@@ -24,8 +25,11 @@ import jakarta.validation.Valid;
 @Controller
 @RequestMapping("/")
 public class HomeController {
-
+    @Autowired
     private RegistrationService rs;
+    @Autowired
+    private PostServiceInterface service;
+
     /**
      * Displays the home page with a list of post models.
      * @param model the Spring MVC model for rendering the view
@@ -34,71 +38,8 @@ public class HomeController {
     @GetMapping("/")
     public String showHomePage(Model model) {
 
-        List<PostModel> postModels = new ArrayList<>();
-
-        // Populate the list with data (replace this with your actual data)
-        PostModel post1 = new PostModel();
-        post1.setImageUrl("https://via.placeholder.com/300");
-        post1.setTitle("POST 1");
-        post1.setDescription("this is filler text about the post.");
-        post1.setDate("January 1, 2023");
-
-        PostModel post2 = new PostModel();
-        post2.setImageUrl("https://via.placeholder.com/300");
-        post2.setTitle("POST 2");
-        post2.setDescription("this is filler text about the post.");
-        post2.setDate("January 2, 2023");
-
-        PostModel post3 = new PostModel();
-        post3.setImageUrl("https://via.placeholder.com/300");
-        post3.setTitle("POST 3");
-        post3.setDescription("this is filler text about the post.");
-        post3.setDate("January 3, 2023");
-
-
-        PostModel post4 = new PostModel();
-        post4.setImageUrl("https://via.placeholder.com/300");
-        post4.setTitle("POST 4");
-        post4.setDescription("this is filler text about the post.");
-        post4.setDate("January 4, 2024");
-
-        PostModel post5 = new PostModel();
-        post5.setImageUrl("https://via.placeholder.com/300");
-        post5.setTitle("POST 5");
-        post5.setDescription("this is filler text about the post.");
-        post5.setDate("January 5, 2025");
-
-        PostModel post6 = new PostModel();
-        post6.setImageUrl("https://via.placeholder.com/300");
-        post6.setTitle("POST 6");
-        post6.setDescription("this is filler text about the post.");
-        post6.setDate("January 6, 2024");
-
-        PostModel post7 = new PostModel();
-        post7.setImageUrl("https://via.placeholder.com/300");
-        post7.setTitle("POST 7");
-        post7.setDescription("this is filler text about the post.");
-        post7.setDate("January 7, 2024");
-
-        PostModel post8 = new PostModel();
-        post8.setImageUrl("https://via.placeholder.com/300");
-        post8.setTitle("POST 8");
-        post8.setDescription("this is filler text about the post.");
-        post8.setDate("January 8, 2024");
-
-        // Add the PostModel instances to the list
-        postModels.add(post1);
-        postModels.add(post2);
-        postModels.add(post3);
-        postModels.add(post4);
-        postModels.add(post5);
-        postModels.add(post6);
-        postModels.add(post7);
-        postModels.add(post8);
-
-        // Add the list to the model
-        model.addAttribute("postModels", postModels);
-        
+        List<PostModel> posts = service.getPosts();
+        model.addAttribute("posts", posts);
         return "home";
     }
 
@@ -182,5 +123,49 @@ public class HomeController {
         model.addAttribute("title", "Portfol.io");
         return "signIn";
     }
-}
+
+
+    /**
+     * Displays the page for creating a new post.
+     * @param model the model to be populated with attributes
+     * @return the name of the view template for creating a post
+     */
+    @GetMapping("/create")
+    public String showCreatePostPage(Model model) 
+    {
+        model.addAttribute("title", "Create Post Here!");
+        model.addAttribute("postModel", new PostModel(null, null, null, null));
+        return "createPost";
+    }
+
+
+    /**
+     * Processes the creation of a new post.
+     * @param postModel      the post model containing the new post's data
+     * @param bindingResult  the binding result for validation errors
+     * @param model          the model to be populated with attributes
+     * @return the view template to redirect to, either the createPost template if there are errors or the home page
+     */
+    @PostMapping("/doCreatePost")
+    public String doCreatePost(@Valid PostModel postModel, BindingResult bindingResult, Model model) 
+    {
+        if(bindingResult.hasErrors())
+        {
+            model.addAttribute("title", "Create Post Here!");
+            return "createPost";
+        }
+
+        // Save the new post
+        service.savePost(postModel);
+
+        // Get all posts including the newly added one
+        List<PostModel> posts = service.getPosts();
+        model.addAttribute("posts", posts);
+
+
+        return "redirect:/";
+        
+    }
+
+}   
 

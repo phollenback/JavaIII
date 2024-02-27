@@ -74,4 +74,14 @@ public class PostModel {
     public void setDate(String date) {
         this.date = date;
     }
+
+
+
+    public PostModel(String imageUrl, String title, String description, String date) {
+		super();
+		this.imageUrl = imageUrl;
+		this.title = title;
+		this.description = description;
+		this.date = date;
+	}
 }
