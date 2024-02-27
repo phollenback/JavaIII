@@ -9,12 +9,20 @@ import com.gcu.business.RegistrationService;
 @Configuration
 public class SpringConfig 
 {
-     @Bean(name="loginService", initMethod="init", destroyMethod="destroy")
+    /**
+     * Spring Bean for the LoginService
+     * @return new loginService
+     */
+    @Bean(name="loginService", initMethod="init", destroyMethod="destroy")
     public LoginService getLogin()
     {
         return new LoginService();
     }
-    
+
+    /**
+     * Spring Bean for the RegistrationService
+     * @return new registrationService
+     */
     @Bean(name="registrationService", initMethod="init", destroyMethod="destroy")
     public RegistrationService getSignUp()
     {
