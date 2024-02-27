@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.gcu.business.RegistrationService;
 import com.gcu.model.LoginModel;
 import com.gcu.model.PostModel;
 import com.gcu.model.SignUpModel;
 
 import jakarta.validation.Valid;
+
 
 /**
  * Handles requests related to the home page, sign-up, login, and user sign-in.
@@ -23,6 +25,7 @@ import jakarta.validation.Valid;
 @RequestMapping("/")
 public class HomeController {
 
+    private RegistrationService rs;
     /**
      * Displays the home page with a list of post models.
      * @param model the Spring MVC model for rendering the view
@@ -163,8 +166,10 @@ public class HomeController {
             model.addAttribute("title", "Sign Up Here!");
             return "signup";
         }
-
-        return "redirect:/";
+        if(rs.initializeUser(signUpModel))
+            return "redirect:/";
+        
+        return "signup";
     }
 
      /**

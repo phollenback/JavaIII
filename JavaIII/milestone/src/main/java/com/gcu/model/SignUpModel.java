@@ -6,7 +6,8 @@ import jakarta.validation.constraints.Size;
 /**
  * Represents a data model for sign-up information.
  */
-public class SignUpModel {
+public class SignUpModel
+ {
 
     /**
      * First name of the user.
