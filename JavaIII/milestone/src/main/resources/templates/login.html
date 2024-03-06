@@ -9,7 +9,7 @@
             </div><br><br>
             <div class="form-group">
               <label for="exampleInputEmail2">Password</label>
-              <input type="text" class="form-control" th:field="*{password}" placeholder="Pazzword23">
+              <input type="text" class="form-control" th:field="*{password}" placeholder="Password23!">
               <h5 style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</h5>
             </div><br>
             <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
