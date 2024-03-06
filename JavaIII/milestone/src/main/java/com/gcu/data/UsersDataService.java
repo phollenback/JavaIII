@@ -10,41 +10,49 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.gcu.model.SignUpModel;
 
-public class UsersDataService<T> implements DataAccessInterface<T> {
+public class UsersDataService implements DataAccessInterface<SignUpModel> {
     @Autowired
-	private DataSource dataSource;
-	private JdbcTemplate jdbcTemplateObject;
-	
-	public UsersDataService(DataSource dataSource) {
-		this.dataSource = dataSource;
-		this.jdbcTemplateObject = new JdbcTemplate(dataSource);
-	}
-	 
-	@Override
-    public List<T> findAll() {
-        String sql = "SELECT * FROM ORDERS";
-        List<T> posts = new ArrayList<>();
-        return posts;
+    private DataSource dataSource;
+    private JdbcTemplate jdbcTemplateObject;
+
+    public UsersDataService(DataSource dataSource) {
+        this.dataSource = dataSource;
+        this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
-	
-	@Override
-    public T findById(int id) {
+
+    @Override
+    public List<SignUpModel> findAll() {
+        String sql = "SELECT * FROM USERS"; // Correct table name
+        // Perform database query to fetch users
+        List<SignUpModel> users = new ArrayList<>();
+        // Populate users list from database
+        return users;
+    }
+
+    @Override
+    public SignUpModel findById(int id) {
+        // Implement logic to find user by id from the database
         return null;
     }
 
-	@Override
-    public boolean create(T posts) {
-        
+    @Override
+    public boolean create(SignUpModel user) {
+        // Implement logic to create a user in the database
         return false;
     }
 
-	@Override
-	public boolean update(T t) {
-		return false;
-	}
+    @Override
+    public boolean update(SignUpModel user) {
+        // Implement logic to update a user in the database
+        // Example:
+        String sql = "UPDATE USERS SET username=?, email=? WHERE id=?";
+        int updatedRows = jdbcTemplateObject.update(sql, user.getUsername(), user.getEmail());
+        return updatedRows > 0;
+    }
 
-	@Override
-	public boolean delete(T t) {
-		return false;
-	}
+    @Override
+    public boolean delete(SignUpModel user) {
+        // Implement logic to delete a user from the database
+        return false;
+    }
 }
