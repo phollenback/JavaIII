@@ -6,7 +6,6 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
@@ -14,8 +13,8 @@ import org.springframework.stereotype.Service;
 import com.gcu.model.SignUpModel;
 
 @Service
-public class UsersDataService implements DataAccessInterface<SignUpModel> {
-   
+public class UsersDataService implements DataAccessInterface<SignUpModel> 
+{
     @Autowired
     private DataSource dataSource;
     private JdbcTemplate jdbcTemplateObject;

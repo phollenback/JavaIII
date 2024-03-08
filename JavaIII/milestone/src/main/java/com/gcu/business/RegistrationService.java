@@ -30,9 +30,12 @@ public class RegistrationService
                 user.getEmail().equals(signUp.getEmail()) || 
                 user.getPhoneNumber().equals(signUp.getPhoneNumber()))
             {
+                // throw clear exception
                 return false;
             }
         }
+
+        service.create(user);
         // verify in database, eventually
         return true;
     }
