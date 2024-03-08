@@ -2,8 +2,10 @@ package com.gcu.business;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gcu.data.DataAccessInterface;
 import com.gcu.model.PostModel;
 
 /**
@@ -14,6 +16,9 @@ public class PostsBusinessService implements PostServiceInterface
 {
 
     private List<PostModel> posts = new ArrayList<>();
+    
+    @Autowired
+    private DataAccessInterface<PostModel> service;
 
 
     /**
@@ -38,25 +43,22 @@ public class PostsBusinessService implements PostServiceInterface
      */
     @Override
     public List<PostModel> getPosts()
-     {
-        return posts;
+    {
+        return service.findAll();
     }
 
 
     /**
      * Saves a new post.
      * @param newPost the new post to save
-     * @return the updated list of posts
+     * @return true if the post is saved successfully, false otherwise
      */
     @Override
-    public List<PostModel> savePost(PostModel newPost)
+    public boolean savePost(PostModel newPost) 
     {
-        List<PostModel> posts = getPosts();
-
-        posts.add(newPost);
-
-        return posts;
+        return service.create(newPost);
     }
+
 
 
 }
