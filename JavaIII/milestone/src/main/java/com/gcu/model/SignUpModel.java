@@ -8,8 +8,7 @@ import jakarta.validation.constraints.Size;
  */
 public class SignUpModel
  {
-    public SignUpModel(String id, String firstName, String lastName, String email, String phoneNumber, String username, String password) {
-        this.id = id;
+    public SignUpModel(String firstName, String lastName, String email, String phoneNumber, String username, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -83,14 +82,6 @@ public class SignUpModel
      */
     public String getId() {
         return id;
-    }
-
-    /**
-     * Sets the first name of the user.
-     * @param id The first name to set.
-     */
-    public void setId(String id) {
-        this.id = id;
     }
 
     /**

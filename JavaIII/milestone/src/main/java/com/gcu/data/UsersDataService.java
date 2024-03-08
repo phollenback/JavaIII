@@ -33,8 +33,7 @@ public class UsersDataService implements DataAccessInterface<SignUpModel> {
         try {
             SqlRowSet srs = jdbcTemplateObject.queryForRowSet(sql);
             while (srs.next()) {
-                users.add(new SignUpModel(srs.getString("id"),
-                        srs.getString("first_name"),
+                users.add(new SignUpModel(srs.getString("first_name"),
                         srs.getString("last_name"),
                         srs.getString("email"),
                         srs.getString("phone_number"),

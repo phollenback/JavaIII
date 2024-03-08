@@ -26,7 +26,9 @@ public class RegistrationService
 
         for(SignUpModel signUp : users)
         {
-            if(user.getEmail().equals(signUp.getEmail()))
+            if(user.getUsername().equals(signUp.getUsername()) || 
+                user.getEmail().equals(signUp.getEmail()) || 
+                user.getPhoneNumber().equals(signUp.getPhoneNumber()))
             {
                 return false;
             }
