@@ -7,6 +7,7 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import com.gcu.model.SignUpModel;
 
@@ -25,6 +26,20 @@ public class UsersDataService implements DataAccessInterface<SignUpModel> {
         String sql = "SELECT * FROM USERS"; // Correct table name
         // Perform database query to fetch users
         List<SignUpModel> users = new ArrayList<>();
+        try {
+            SqlRowSet srs = jdbcTemplateObject.queryForRowSet(sql);
+            while (srs.next()) {
+                users.add(new SignUpModel(srs.getString("FIRST_NAME"),
+                        srs.getString("LAST_NAME"),
+                        srs.getString("EMAIL"),
+                        srs.getString("PHONE_NUMBER"),
+                        srs.getString("USERNAME"),
+                        srs.getString("PASSWORD")));
+            }
+        } catch (Exception e) {
+            e.printStackTrace(); // For now, just print stack trace
+        }
+
         // Populate users list from database
         return users;
     }
@@ -37,7 +52,14 @@ public class UsersDataService implements DataAccessInterface<SignUpModel> {
 
     @Override
     public boolean create(SignUpModel user) {
-        // Implement logic to create a user in the database
+        String sql = "INSERT INTO USERS(FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, USERNAME, PASSWORD) VALUES(?, ?, ?, ?, ?, ?)";
+        try {
+            int rows = jdbcTemplateObject.update(sql, user.getFirstName(), user.getLastName(),
+                    user.getEmail(), user.getPhoneNumber(), user.getUsername(), user.getPassword());
+            return rows == 1 ? true : false;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return false;
     }
 

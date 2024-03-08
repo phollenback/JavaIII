@@ -8,6 +8,14 @@ import jakarta.validation.constraints.Size;
  */
 public class SignUpModel
  {
+    public SignUpModel(String firstName, String lastName, String email, String phoneNumber, String username, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.username = username;
+        this.password = password;
+    }
 
     /**
      * First name of the user.
