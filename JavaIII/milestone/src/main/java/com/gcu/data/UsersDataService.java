@@ -23,18 +23,19 @@ public class UsersDataService implements DataAccessInterface<SignUpModel> {
 
     @Override
     public List<SignUpModel> findAll() {
-        String sql = "SELECT * FROM USERS"; // Correct table name
+        String sql = "SELECT * FROM users"; // Correct table name
         // Perform database query to fetch users
         List<SignUpModel> users = new ArrayList<>();
         try {
             SqlRowSet srs = jdbcTemplateObject.queryForRowSet(sql);
             while (srs.next()) {
-                users.add(new SignUpModel(srs.getString("FIRST_NAME"),
-                        srs.getString("LAST_NAME"),
-                        srs.getString("EMAIL"),
-                        srs.getString("PHONE_NUMBER"),
-                        srs.getString("USERNAME"),
-                        srs.getString("PASSWORD")));
+                users.add(new SignUpModel(srs.getString("id"),
+                        srs.getString("first_name"),
+                        srs.getString("last_name"),
+                        srs.getString("email"),
+                        srs.getString("phone_number"),
+                        srs.getString("username"),
+                        srs.getString("password")));
             }
         } catch (Exception e) {
             e.printStackTrace(); // For now, just print stack trace

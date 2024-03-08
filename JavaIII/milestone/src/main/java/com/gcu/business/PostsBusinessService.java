@@ -56,7 +56,6 @@ public class PostsBusinessService implements PostServiceInterface
         posts.add(newPost);
 
         return posts;
-
     }
 
 

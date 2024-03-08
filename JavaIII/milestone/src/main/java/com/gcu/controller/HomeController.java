@@ -92,7 +92,7 @@ public class HomeController {
     {
         // Display Sign Up Form View
         model.addAttribute("title", "Sign Up Here!");
-        model.addAttribute("signUpModel", new SignUpModel("John", "Doe", "john@example.com", "1234567890", "johndoe", "password"));
+        model.addAttribute("signUpModel", new SignUpModel("1", "John", "Doe", "john@example.com", "1234567890", "johndoe", "password"));
         return "signup";
     }
 

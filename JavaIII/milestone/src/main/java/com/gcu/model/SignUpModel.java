@@ -8,7 +8,8 @@ import jakarta.validation.constraints.Size;
  */
 public class SignUpModel
  {
-    public SignUpModel(String firstName, String lastName, String email, String phoneNumber, String username, String password) {
+    public SignUpModel(String id, String firstName, String lastName, String email, String phoneNumber, String username, String password) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -16,6 +17,11 @@ public class SignUpModel
         this.username = username;
         this.password = password;
     }
+
+    /**
+     * User ID
+     */
+    private String id = "";
 
     /**
      * First name of the user.
@@ -70,6 +76,22 @@ public class SignUpModel
     @NotNull(message = "Password is Required")
     @Size(min = 1, max = 32, message = "Password must be between 1 and 32 characters")
     private String password = "";
+
+    /**
+     * Gets the first name of the user.
+     * @return The first name.
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * Sets the first name of the user.
+     * @param id The first name to set.
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
 
     /**
      * Gets the first name of the user.
