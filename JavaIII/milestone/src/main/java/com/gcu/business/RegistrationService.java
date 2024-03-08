@@ -14,6 +14,7 @@ public class RegistrationService
 {
     @Autowired
     private UsersDataService service;
+    
     /**
      * Initializes a user.
      * 
