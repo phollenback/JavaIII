@@ -47,6 +47,7 @@ public class UsersDataService implements DataAccessInterface<SignUpModel>
         return users;
     }
 
+    
     @Override
     public SignUpModel findById(int id) {
         // Implement logic to find user by id from the database

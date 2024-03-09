@@ -115,8 +115,21 @@ public class HomeController {
         }
 
         // Utilize the Registration Service to initialize the user
-        if(rs.initializeUser(signUpModel))
-            return "redirect:/";
+        switch(rs.initializeUser(signUpModel))
+        {
+            case 1:             // successful
+                return "redirect:/";
+            case -1:            // same username
+                model.addAttribute("title", "Username already taken!");
+                return "signup";
+            case -2:            // same email
+                model.addAttribute("title", "Email already taken!");
+                return "signup";
+            case -3:            // same number
+                model.addAttribute("title", "Phone Number already taken!");
+                return "signup";
+        }
+            
             
         return "signup";
     }
