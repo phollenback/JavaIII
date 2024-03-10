@@ -22,9 +22,10 @@ public class LoginService
      */
     public boolean checkUserExistence(LoginModel user)
     {
+        // create a list using the SignUp model and populate it with the users database table
         List<SignUpModel> users = service.findAll();
 
-        // verify in database, eventually
+        // verify that user exists in the database
         for(SignUpModel login : users)
         {
             if(user.getUsername().equals(login.getUsername()) &&
@@ -33,7 +34,8 @@ public class LoginService
                 return true;
             }
         }
-        // this will display an error
+
+        // User login credentials do not exist
         return false;
     }
     

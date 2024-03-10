@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 
 import com.gcu.model.SignUpModel;
 
+/**
+ * This class provides data access methods for managing users in a database.
+ */
 @Service
 public class UsersDataService implements DataAccessInterface<SignUpModel> 
 {
@@ -19,11 +22,21 @@ public class UsersDataService implements DataAccessInterface<SignUpModel>
     private DataSource dataSource;
     private JdbcTemplate jdbcTemplateObject;
 
+    /**
+     * Constructor to set the data source and initialize the JDBC template.
+     * 
+     * @param dataSource the data source to be used for database access
+     */
     public UsersDataService(DataSource dataSource) {
         this.dataSource = dataSource;
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
 
+    /**
+     * Retrieves all users from the database.
+     * 
+     * @return a list of all users in the database
+     */
     @Override
     public List<SignUpModel> findAll() {
         String sql = "SELECT * FROM users"; // Correct table name
@@ -47,13 +60,24 @@ public class UsersDataService implements DataAccessInterface<SignUpModel>
         return users;
     }
 
-    
+    /**
+     * Retrieves one user by id from the database.
+     * 
+     * @param id the id of the user specified
+     * @return the user with the specified ID, or null if not found
+     */
     @Override
     public SignUpModel findById(int id) {
         // Implement logic to find user by id from the database
         return null;
     }
-
+    
+    /**
+     * Creates a new post in the database
+     * 
+     * @param user the user to create
+     * @return true if the user was created successfully, false otherwise
+     */
     @Override
     public boolean create(SignUpModel user) {
         String sql = "INSERT INTO USERS(FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, USERNAME, PASSWORD) VALUES(?, ?, ?, ?, ?, ?)";
@@ -67,6 +91,12 @@ public class UsersDataService implements DataAccessInterface<SignUpModel>
         return false;
     }
 
+    /**
+     * Updates user in the database.
+     * 
+     * @param user the user to update
+     * @return true if the user was updated successfully, false otherwise
+     */
     @Override
     public boolean update(SignUpModel user) {
         // Implement logic to update a user in the database
@@ -75,7 +105,13 @@ public class UsersDataService implements DataAccessInterface<SignUpModel>
         int updatedRows = jdbcTemplateObject.update(sql, user.getUsername(), user.getEmail());
         return updatedRows > 0;
     }
-
+    
+    /**
+     * Deletes an existing user in the database.
+     * 
+     * @param user the user to delete
+     * @return true if the user was deleted successfully, false otherwise
+     */
     @Override
     public boolean delete(SignUpModel user) {
         // Implement logic to delete a user from the database

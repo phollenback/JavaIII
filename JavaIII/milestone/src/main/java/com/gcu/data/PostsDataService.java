@@ -23,16 +23,20 @@ public class PostsDataService implements DataAccessInterface<PostModel> {
     private DataSource dataSource;
     private JdbcTemplate jdbcTemplateObject;
 
+    /**
+     * Constructor to set the data source and initialize the JDBC template.
+     * 
+     * @param dataSource the data source to be used for database access
+     */
     public PostsDataService(DataSource dataSource) {
         this.dataSource = dataSource;
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
 
-
     /**
-     * Constructor to set the data source and initialize the JDBC template.
+     * Retrieves all posts from the database.
      * 
-     * @param dataSource the data source to be used for database access
+     * @return a list of all posts in the database
      */
     @Override
     public List<PostModel> findAll() {
@@ -54,12 +58,11 @@ public class PostsDataService implements DataAccessInterface<PostModel> {
         return posts;
     }
     
-
-
     /**
-     * Retrieves all posts from the database.
+     * Retrieves one post from the database.
      * 
-     * @return a list of all posts in the database
+     * @param id the id of the user selected
+     * @return the post with the specified ID, or null if not found
      */
     @Override
     public PostModel findById(int id) {
@@ -67,12 +70,11 @@ public class PostsDataService implements DataAccessInterface<PostModel> {
         return null;
     }
 
-
     /**
-     * Retrieves a post by its ID from the database.
+     * Creates a new post in the database
      * 
-     * @param id the ID of the post to retrieve
-     * @return the post with the specified ID, or null if not found
+     * @param post the post to create
+     * @return true if the user was created successfully, false otherwise
      */
     @Override
     public boolean create(PostModel post) 
@@ -87,12 +89,11 @@ public class PostsDataService implements DataAccessInterface<PostModel> {
         return insertedRows > 0;
     }
 
-
     /**
-     * Creates a new post in the database.
-     * 
-     * @param post the post to create
-     * @return true if the post was created successfully, false otherwise
+     * Updates a new post in the database.
+     *
+     * @param post the post to update
+     * @return true if the post was updated successfully, false otherwise
      */
     @Override
     public boolean update(PostModel post) {
@@ -103,12 +104,11 @@ public class PostsDataService implements DataAccessInterface<PostModel> {
         return updatedRows > 0;
     }
 
-
     /**
-     * Updates an existing post in the database.
+     * Deletes an existing post in the database.
      * 
-     * @param post the post to update
-     * @return true if the post was updated successfully, false otherwise
+     * @param post the post to delete
+     * @return true if the post was deleted successfully, false otherwise
      */
     @Override
     public boolean delete(PostModel post) {

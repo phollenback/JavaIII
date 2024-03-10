@@ -18,11 +18,6 @@ public class SignUpModel
     }
 
     /**
-     * User ID
-     */
-    private String id = "";
-
-    /**
      * First name of the user.
      * Annotated with @NotNull to specify that the field cannot be null.
      * Annotated with @Size to specify the minimum and maximum size of the string.
@@ -75,14 +70,6 @@ public class SignUpModel
     @NotNull(message = "Password is Required")
     @Size(min = 1, max = 32, message = "Password must be between 1 and 32 characters")
     private String password = "";
-
-    /**
-     * Gets the first name of the user.
-     * @return The first name.
-     */
-    public String getId() {
-        return id;
-    }
 
     /**
      * Gets the first name of the user.

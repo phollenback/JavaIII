@@ -23,8 +23,10 @@ public class RegistrationService
      */
     public int initializeUser(SignUpModel user)
      {
+        // create a list using the SignUp model and populate it with the users database table
         List<SignUpModel> users = service.findAll();
 
+        // check to see if username, email, or phone number already exist in the database
         for(SignUpModel signUp : users)
         {
             if(user.getUsername().equals(signUp.getUsername()))

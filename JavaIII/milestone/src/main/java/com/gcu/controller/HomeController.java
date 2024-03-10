@@ -78,7 +78,9 @@ public class HomeController {
         // Utilize the Login Service to check for user existence and login
         if(ls.checkUserExistence(loginModel))
             return "redirect:/";
-            
+        
+        // Incorrect login credentials
+        model.addAttribute("title", "User does not exist. Please try again");    
         return "login";
     }
 
