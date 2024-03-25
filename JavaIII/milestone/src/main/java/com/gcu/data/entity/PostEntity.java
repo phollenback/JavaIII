@@ -7,7 +7,8 @@ import org.springframework.data.relational.core.mapping.Table;
 @Table("POSTS")
 public class PostEntity {
 
-    public PostEntity(String imageUrl, String title, String description, String date, int userId) {
+    public PostEntity(String imageUrl, String title, String description, String date, int userId) 
+    {
         this.imageUrl = imageUrl;
         this.title = title;
         this.description = description;
@@ -71,6 +72,11 @@ public class PostEntity {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public int getId()
+    {
+        return this.id;
     }
 
 }

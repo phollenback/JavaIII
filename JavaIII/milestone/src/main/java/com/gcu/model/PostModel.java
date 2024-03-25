@@ -6,6 +6,7 @@ package com.gcu.model;
  * This class is typically used to encapsulate data for displaying posts.
  */
 public class PostModel {
+    public int id;
     private String imageUrl;
     private String title;
     private String description;
@@ -90,6 +91,15 @@ public class PostModel {
      */
     public void setDate(String date) {
         this.date = date;
+    }
+
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
 

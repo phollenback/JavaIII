@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/mainTemplate">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Post Details</title>
+    <style>
+        /* CSS for the hero banner */
+
+        /* Other styles for the details */
+        .card {
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+            width: 80%;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+        }
+
+        .card-image {
+            width: 100%;
+            max-height: 25vh;
+            object-fit: cover;
+        }
+
+        .text-content {
+            padding: 20px;
+        }
+
+        .buttons-container {
+            margin: 20px;
+            display: flex;
+            align-self: flex-end;
+            gap: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="card" th:if="${postModel != null}">
+            <img class="card-image" th:src="${postModel.imageUrl}" alt="Default Text">
+            <div class="text-content">
+                <h1 th:text="${postModel.title}" style="font-size: 7em;"></h1>
+                <p th:text="${postModel.description}" style="font-size: 4em;"></p>
+                <p th:text="${postModel.date}" style="font-size: 2em;"></p>
+            </div>
+            <div class="buttons-container">
+                <button style="background-color: white; padding: 10px;">Edit</button>
+                <button style="background-color: red; padding: 10px; color: white;">Delete</button>
+            </div>
+        </div>
+
+        <div th:if="${postModel == null}">
+            <p>Post not found</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -24,26 +24,28 @@ public class PostsBusinessService implements PostServiceInterface
 
     /**
      * Retrieves the list of all posts.
+     *
      * @return the list of posts
      */
     @Override
-	public List<PostModel> getPosts() {
-		List<PostEntity> postEntities = service.findAll();
-		
-		
-		List<PostModel> ordersDomain = new ArrayList<PostModel>();
-		for (PostEntity entity : postEntities)
-		{
-			ordersDomain.add(new PostModel(entity.getImageUrl(), entity.getTitle(), entity.getDescription(), entity.getDate(), entity.getUserId()));
-		}
-		
-		
-		return ordersDomain;
-	}
+    public List<PostModel> getPosts() {
+        List<PostEntity> postEntities = service.findAll();
 
+
+        List<PostModel> postsDomain = new ArrayList<>();
+        for (PostEntity entity : postEntities) {
+            PostModel postModel = new PostModel(entity.getImageUrl(), entity.getTitle(), entity.getDescription(), entity.getDate(), entity.getUserId());
+            postModel.setId(entity.getId()); // Set the ID in the PostModel
+            postsDomain.add(postModel);
+        }
+
+
+        return postsDomain;
+    }
 
     /**
      * Saves a new post.
+     *
      * @param newPost the new post to save
      * @return true if the post is saved successfully, false otherwise
      */
@@ -51,8 +53,18 @@ public class PostsBusinessService implements PostServiceInterface
     public boolean savePost(PostModel newPost) {
         PostEntity entity = new PostEntity(newPost.getImageUrl(), newPost.getTitle(), newPost.getDescription(), newPost.getDate(), newPost.getUserId());
         return service.create(entity);
-
     }
+
+    @Override
+    public PostModel getPostById(int id) 
+    {
+        PostEntity entity = service.findById(id);
+        if (entity != null) {
+            return new PostModel(entity.getImageUrl(), entity.getTitle(), entity.getDescription(), entity.getDate(), entity.getUserId());
+        }
+        return null;
+    }
+
 
 
 }

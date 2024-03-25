@@ -22,4 +22,6 @@ public interface PostServiceInterface
      * @return the updated list of posts
      */
     public boolean savePost(PostModel newModel);
+
+    public PostModel getPostById(int id);
 }
