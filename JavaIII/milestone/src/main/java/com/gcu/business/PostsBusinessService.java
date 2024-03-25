@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gcu.data.DataAccessInterface;
+import com.gcu.data.PostsDataService;
+import com.gcu.data.entity.PostEntity;
 import com.gcu.model.PostModel;
 
 /**
@@ -18,28 +20,49 @@ public class PostsBusinessService implements PostServiceInterface
     private List<PostModel> posts = new ArrayList<>();
     
     @Autowired
-    private DataAccessInterface<PostModel> service;
+	private PostsDataService service;
 
     /**
      * Retrieves the list of all posts.
+     *
      * @return the list of posts
      */
     @Override
-    public List<PostModel> getPosts()
-    {
-        return service.findAll();
-    }
+    public List<PostModel> getPosts() {
+        List<PostEntity> postEntities = service.findAll();
 
+
+        List<PostModel> postsDomain = new ArrayList<>();
+        for (PostEntity entity : postEntities) {
+            PostModel postModel = new PostModel(entity.getImageUrl(), entity.getTitle(), entity.getDescription(), entity.getDate(), entity.getUserId());
+            postModel.setId(entity.getId()); // Set the ID in the PostModel
+            postsDomain.add(postModel);
+        }
+
+
+        return postsDomain;
+    }
 
     /**
      * Saves a new post.
+     *
      * @param newPost the new post to save
      * @return true if the post is saved successfully, false otherwise
      */
     @Override
-    public boolean savePost(PostModel newPost) 
+    public boolean savePost(PostModel newPost) {
+        PostEntity entity = new PostEntity(newPost.getImageUrl(), newPost.getTitle(), newPost.getDescription(), newPost.getDate(), newPost.getUserId());
+        return service.create(entity);
+    }
+
+    @Override
+    public PostModel getPostById(int id) 
     {
-        return service.create(newPost);
+        PostEntity entity = service.findById(id);
+        if (entity != null) {
+            return new PostModel(entity.getImageUrl(), entity.getTitle(), entity.getDescription(), entity.getDate(), entity.getUserId());
+        }
+        return null;
     }
 
 

@@ -54,6 +54,9 @@
             <label for="description">Description:</label>
             <textarea id="description" th:field="*{description}"></textarea>
 
+            <input type="hidden" th:field="*{userId}" th:value="0" />
+
+
             <button type="submit" value="Submit">Create Post</button>
         </form>
     </section>
