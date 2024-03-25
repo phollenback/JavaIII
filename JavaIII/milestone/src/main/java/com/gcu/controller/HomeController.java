@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -157,7 +158,7 @@ public class HomeController {
     public String showCreatePostPage(Model model) 
     {
         model.addAttribute("title", "Create Post Here!");
-        model.addAttribute("postModel", new PostModel(null, null, null, null));
+        model.addAttribute("postModel", new PostModel("", "", "", "", 0));
         return "createPost";
     }
 
@@ -174,6 +175,10 @@ public class HomeController {
     {
         if(bindingResult.hasErrors())
         {
+            System.out.println("Validation errors:");
+            for (FieldError error : bindingResult.getFieldErrors()) {
+                System.out.println(error.getField() + ": " + error.getDefaultMessage());
+            }
             model.addAttribute("title", "Create Post Here!");
             return "createPost";
         }

@@ -10,6 +10,7 @@ public class PostModel {
     private String title;
     private String description;
     private String date;
+    private int userId;
 
     /**
      * Gets the URL of the post image.
@@ -41,6 +42,22 @@ public class PostModel {
      */
     public String getDate() {
         return date;
+    }
+
+    /**
+     * Gets the userId of the post.
+     * @return the userId of the post
+     */
+    public int getUserId() {
+        return userId;
+    }
+
+    /**
+     * Sets the user id of the post.
+     * @param imageUrl the usre Id to set
+     */
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     /**
@@ -77,11 +94,12 @@ public class PostModel {
 
 
 
-    public PostModel(String imageUrl, String title, String description, String date) {
+    public PostModel(String imageUrl, String title, String description, String date, int userId) {
 		super();
 		this.imageUrl = imageUrl;
 		this.title = title;
 		this.description = description;
 		this.date = date;
+        this.userId = userId;
 	}
 }
