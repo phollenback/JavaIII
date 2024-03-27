@@ -23,6 +23,8 @@ import com.gcu.model.SignUpModel;
 
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 
@@ -137,9 +139,7 @@ public class HomeController {
             case -3:            // same number
                 model.addAttribute("title", "Phone Number already taken!");
                 return "signup";
-        }
-            
-            
+        }        
         return "signup";
     }
 
@@ -190,7 +190,7 @@ public class HomeController {
             return "createPost";
         }        
         // Save the new post
-        service.savePost(postModel);
+        service.createPost(postModel);
 
         // Get all posts including the newly added one
         List<PostModel> posts = service.getPosts();
@@ -201,21 +201,76 @@ public class HomeController {
     }
 
 
+    /**
+     * Retrieves details of a specific post by its ID.
+     *
+     * @param id    The ID of the post to retrieve details for.
+     * @param model The model to which post details will be added.
+     * @return The view name for displaying post details.
+     */
     @GetMapping("/post/{id}")
-    public String showPostDetails(@PathVariable int id, Model model) 
-    {
+    public String showPostDetails(@PathVariable int id, Model model) {
         // Logic to retrieve the post details by id
         PostModel post = service.getPostById(id);
         model.addAttribute("postModel", post);
         return "postDetails";
     }
 
-    @PostMapping("/delete")
-    public String deletePost(@RequestParam("postId") int postId, Model model)
-    {
-        dataService.delete(postId + 1);
+    /**
+     * Deletes a post based on its ID.
+     *
+     * @param id The ID of the post to delete.
+     * @return Redirects to the home page after deletion.
+     */
+    @PostMapping("post/delete/{id}")
+    public String deletePost(@PathVariable int id) {
+        dataService.delete(id + 1);
+        return "redirect:/";
+    }
 
-        return "/home";
+    /**
+     * Prepares the update form for a specific post.
+     *
+     * @param id    The ID of the post to update.
+     * @param model The model to which post details will be updated.
+     * @return The view name for updating the post.
+     */
+    @PostMapping("post/update/{id}")
+    public String updatePost(@PathVariable int id, Model model) {
+        PostModel post = service.getPostById(id + 3);
+        dataService.delete(id + 3);
+        model.addAttribute("postModel", post);
+        return "updatePost";
+    }
+
+    /**
+     * Performs the update operation for a post.
+     *
+     * @param postModel     The updated post model.
+     * @param bindingResult The result of the validation.
+     * @param model         The model to which attributes will be updated.
+     * @return Redirects to the home page after updating the post.
+     */
+    @PostMapping("doUpdate")
+    public String doUpdatePost(@Valid PostModel postModel, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            System.out.println("Validation errors:");
+            for (FieldError error : bindingResult.getFieldErrors()) {
+                System.out.println(error.getField() + ": " + error.getDefaultMessage());
+            }
+            model.addAttribute("title", "Update Post Here!");
+            return "updatePost";
+        }
+
+        // updates post
+        service.updatePost(postModel);
+
+        // Get all posts including the updated one
+        List<PostModel> posts = service.getPosts();
+
+        model.addAttribute("posts", posts);
+
+        return "redirect:/";
     }
 }   
 

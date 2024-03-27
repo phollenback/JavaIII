@@ -21,7 +21,14 @@ public interface PostServiceInterface
      * @param newModel the new post to save
      * @return the updated list of posts
      */
-    public boolean savePost(PostModel newModel);
+    public boolean createPost(PostModel newModel);
+
+    /**
+     * Updates a post.
+     * @param model the post to update
+     * @return the updated list of posts
+     */
+    public boolean updatePost(PostModel model);
 
     public PostModel getPostById(int id);
 }

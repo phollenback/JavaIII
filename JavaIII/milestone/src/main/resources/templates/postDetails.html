@@ -50,10 +50,10 @@
                 <p th:text="${postModel.date}" style="font-size: 2em;"></p>
             </div>
             <div class="buttons-container">
-                <form th:action="@{/create}"> 
+                <form th:action="@{'/post/update/' + ${postModel.id}}" method="post"> 
                     <button style="background-color: white; padding: 10px;">Edit</button>
                 </form>
-                <form th:action="@{/delete}" method="post">
+                <form th:action="@{'/post/delete/' + ${postModel.id}}" method="post">
                     <input type="hidden" name="postId" th:value="${postModel.id}" />
                     <button style="background-color: red; padding: 10px; color: white;">Delete</button>
                 </form>

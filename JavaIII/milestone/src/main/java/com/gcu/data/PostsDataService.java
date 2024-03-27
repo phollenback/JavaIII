@@ -86,6 +86,10 @@ public class PostsDataService implements DataAccessInterface<PostEntity> {
      */
     @Override
     public boolean update(PostEntity post) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy");
+        LocalDate currentDate = LocalDate.now();
+        String formattedDate = currentDate.format(formatter);
+        post.setDate(formattedDate);
         try {
             this.postRepository.save(post);
         } catch (Exception e) {

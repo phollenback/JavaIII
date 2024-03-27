@@ -37,16 +37,28 @@ public class PostsBusinessService implements PostServiceInterface
     }
 
     /**
-     * Saves a new post.
+     * creates a new post.
      *
-     * @param newPost the new post to save
-     * @return true if the post is saved successfully, false otherwise
+     * @param newPost the new post to create
+     * @return true if the post is created successfully, false otherwise
      */
     @Override
-    public boolean savePost(PostModel newPost) {
+    public boolean createPost(PostModel newPost) {
         PostEntity entity = new PostEntity(newPost.getImageUrl(), newPost.getTitle(), newPost.getDescription(), newPost.getDate(), newPost.getUserId());
         return service.create(entity);
     }
+
+    /**
+     * updates a post
+     *
+     * @param post the post to update
+     * @return true if the post is saved successfully, false otherwise
+     */
+    @Override
+    public boolean updatePost(PostModel post) {
+        PostEntity entity = new PostEntity(post.getImageUrl(), post.getTitle(), post.getDescription(), post.getDate(), post.getUserId());
+        return service.update(entity);
+    }   
 
     /**
      * get post by its id
