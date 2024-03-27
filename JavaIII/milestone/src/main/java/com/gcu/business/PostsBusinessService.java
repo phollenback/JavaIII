@@ -71,7 +71,10 @@ public class PostsBusinessService implements PostServiceInterface
     {
         PostEntity entity = service.findById(id);
         if (entity != null) {
-            return new PostModel(entity.getImageUrl(), entity.getTitle(), entity.getDescription(), entity.getDate(), entity.getUserId());
+            PostModel model = new PostModel(entity.getImageUrl(), entity.getTitle(), entity.getDescription(), entity.getDate(), entity.getUserId());
+            model.setId(entity.getId());
+            
+            return model;
         }
         return null;
     }
