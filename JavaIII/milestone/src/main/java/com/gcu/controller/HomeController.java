@@ -211,7 +211,7 @@ public class HomeController {
     @GetMapping("/post/{id}")
     public String showPostDetails(@PathVariable int id, Model model) {
         // Logic to retrieve the post details by id
-        PostModel post = service.getPostById(id);
+        PostEntity post = dataService.findById(id);
         model.addAttribute("postModel", post);
         return "postDetails";
     }

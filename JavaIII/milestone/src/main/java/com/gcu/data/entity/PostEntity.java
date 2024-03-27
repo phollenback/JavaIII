@@ -4,6 +4,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+
+
 import com.gcu.model.PostModel;
 
 /**
@@ -48,6 +50,7 @@ public class PostEntity {
     }
 
     @Id
+    @Column("id")
     int id;
 
     @Column("image_url")
