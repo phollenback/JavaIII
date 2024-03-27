@@ -78,4 +78,12 @@ public class PostsBusinessService implements PostServiceInterface
         }
         return null;
     }
+
+
+
+    @Override
+    public boolean deletePost(int id)
+    {
+        return service.delete(id);
+    }
 }

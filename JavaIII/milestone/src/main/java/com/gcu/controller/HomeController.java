@@ -223,8 +223,8 @@ public class HomeController {
      * @return Redirects to the home page after deletion.
      */
     @PostMapping("post/delete/{id}")
-    public String deletePost(@PathVariable int id) {
-        dataService.delete(id + 1);
+        public String deletePost(@PathVariable int id) {
+        service.deletePost(id);
         return "redirect:/";
     }
 

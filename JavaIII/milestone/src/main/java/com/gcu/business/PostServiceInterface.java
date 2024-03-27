@@ -31,4 +31,6 @@ public interface PostServiceInterface
     public boolean updatePost(PostModel model);
 
     public PostModel getPostById(int id);
+
+    public boolean deletePost(int id);
 }
