@@ -42,7 +42,6 @@ public class HomeController {
      */
     @GetMapping("/")
     public String showHomePage(Model model) {
-
         List<PostModel> posts = service.getPosts();
         model.addAttribute("posts", posts);
         return "home";
@@ -191,7 +190,6 @@ public class HomeController {
         List<PostModel> posts = service.getPosts();
         model.addAttribute("posts", posts);
 
-
         return "redirect:/";
     }
 
@@ -204,8 +202,5 @@ public class HomeController {
         model.addAttribute("postModel", post);
         return "postDetails";
     }
-
-
-
 }   
 

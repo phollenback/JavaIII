@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gcu.data.DataAccessInterface;
 import com.gcu.data.PostsDataService;
 import com.gcu.data.entity.PostEntity;
 import com.gcu.model.PostModel;
@@ -15,10 +14,7 @@ import com.gcu.model.PostModel;
  */
 @Service
 public class PostsBusinessService implements PostServiceInterface
-{
-
-    private List<PostModel> posts = new ArrayList<>();
-    
+{    
     @Autowired
 	private PostsDataService service;
 
@@ -31,15 +27,12 @@ public class PostsBusinessService implements PostServiceInterface
     public List<PostModel> getPosts() {
         List<PostEntity> postEntities = service.findAll();
 
-
         List<PostModel> postsDomain = new ArrayList<>();
         for (PostEntity entity : postEntities) {
             PostModel postModel = new PostModel(entity.getImageUrl(), entity.getTitle(), entity.getDescription(), entity.getDate(), entity.getUserId());
             postModel.setId(entity.getId()); // Set the ID in the PostModel
             postsDomain.add(postModel);
         }
-
-
         return postsDomain;
     }
 
@@ -55,6 +48,12 @@ public class PostsBusinessService implements PostServiceInterface
         return service.create(entity);
     }
 
+    /**
+     * get post by its id
+     * 
+     * @param id post id
+     * @return the post correlating with the id
+     */
     @Override
     public PostModel getPostById(int id) 
     {
@@ -64,7 +63,4 @@ public class PostsBusinessService implements PostServiceInterface
         }
         return null;
     }
-
-
-
 }

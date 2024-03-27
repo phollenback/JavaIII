@@ -40,7 +40,7 @@
     </style>
 </head>
 <body>
-    <div layout:fragment="content">
+   <div layout:fragment="content">
         <div class="card" th:if="${postModel != null}">
             <img class="card-image" th:src="${postModel.imageUrl}" alt="Default Text">
             <div class="text-content">
@@ -53,10 +53,9 @@
                 <button style="background-color: red; padding: 10px; color: white;">Delete</button>
             </div>
         </div>
-
         <div th:if="${postModel == null}">
             <p>Post not found</p>
         </div>
-    </div>
+    </div> 
 </body>
 </html>
