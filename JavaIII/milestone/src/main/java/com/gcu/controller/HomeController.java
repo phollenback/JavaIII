@@ -14,12 +14,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
  
 import com.gcu.business.LoginService;
 import com.gcu.business.RegistrationService;
+import com.gcu.data.PostsDataService;
+import com.gcu.data.entity.PostEntity;
 import com.gcu.business.PostServiceInterface;
 import com.gcu.model.LoginModel;
 import com.gcu.model.PostModel;
 import com.gcu.model.SignUpModel;
 
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 /**
@@ -34,6 +38,8 @@ public class HomeController {
     private RegistrationService rs;
     @Autowired
     private PostServiceInterface service;
+    @Autowired
+    private PostsDataService dataService;
 
     /**
      * Displays the home page with a list of post models.
@@ -158,6 +164,7 @@ public class HomeController {
     @GetMapping("/create")
     public String showCreatePostPage(Model model) 
     {
+        
         model.addAttribute("title", "Create Post Here!");
         model.addAttribute("postModel", new PostModel("", "", "", "", 0));
         return "createPost";
@@ -182,13 +189,13 @@ public class HomeController {
             }
             model.addAttribute("title", "Create Post Here!");
             return "createPost";
-        }
-
+        }        
         // Save the new post
         service.savePost(postModel);
 
         // Get all posts including the newly added one
         List<PostModel> posts = service.getPosts();
+        
         model.addAttribute("posts", posts);
 
 
@@ -205,6 +212,14 @@ public class HomeController {
         return "postDetails";
     }
 
+    @PostMapping("/delete")
+    public String deletePost(@RequestParam("postId") int postId, Model model)
+    {
+        dataService.delete(postId + 1);
+
+        return "/home";
+    }
+    
 
 
 }   

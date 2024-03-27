@@ -72,9 +72,9 @@ public class PostsDataService implements DataAccessInterface<PostEntity> {
     }
 
     @Override
-    public boolean delete(PostEntity post) {
+    public boolean delete(int id) {
         try {
-            this.postRepository.delete(post);
+            this.postRepository.deleteById(id);
         } catch (Exception e) {
             e.printStackTrace();
             return false;

@@ -4,9 +4,16 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+import com.gcu.model.PostModel;
+
 @Table("POSTS")
 public class PostEntity {
 
+    public PostEntity()
+    {
+
+    }
+    
     public PostEntity(String imageUrl, String title, String description, String date, int userId) 
     {
         this.imageUrl = imageUrl;
@@ -14,6 +21,15 @@ public class PostEntity {
         this.description = description;
         this.date = date;
         this.userId = userId;
+    }
+
+    public PostEntity(PostModel post)
+    {
+        this.imageUrl = post.getImageUrl();
+        this.title = post.getTitle();
+        this.description = post.getDescription();
+        this.date = post.getDate();
+        this.userId = post.getUserId();
     }
 
     @Id
