@@ -28,7 +28,7 @@ public interface PostServiceInterface
      * @param model the post to update
      * @return the updated list of posts
      */
-    public boolean updatePost(PostModel model);
+    public boolean updatePost(PostModel model, int id);
 
     public PostModel getPostById(int id);
 

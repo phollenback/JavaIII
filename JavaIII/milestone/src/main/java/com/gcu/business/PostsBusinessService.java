@@ -55,8 +55,11 @@ public class PostsBusinessService implements PostServiceInterface
      * @return true if the post is saved successfully, false otherwise
      */
     @Override
-    public boolean updatePost(PostModel post) {
-        PostEntity entity = new PostEntity(post.getImageUrl(), post.getTitle(), post.getDescription(), post.getDate(), post.getUserId());
+    public boolean updatePost(PostModel post, int id) {
+        PostEntity entity = service.findById(id);
+        entity.setImageUrl(post.getImageUrl());
+        entity.setTitle(post.getTitle());
+        entity.setDescription(post.getDescription());
         return service.update(entity);
     }   
 

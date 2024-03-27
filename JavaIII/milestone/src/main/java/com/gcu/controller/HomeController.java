@@ -222,7 +222,7 @@ public class HomeController {
      * @param id The ID of the post to delete.
      * @return Redirects to the home page after deletion.
      */
-    @PostMapping("post/delete/{id}")
+    @PostMapping("/post/delete/{id}")
         public String deletePost(@PathVariable int id) {
         service.deletePost(id);
         return "redirect:/";
@@ -235,10 +235,9 @@ public class HomeController {
      * @param model The model to which post details will be updated.
      * @return The view name for updating the post.
      */
-    @PostMapping("post/update/{id}")
+    @PostMapping("/post/update/{id}")
     public String updatePost(@PathVariable int id, Model model) {
-        PostModel post = service.getPostById(id + 3);
-        dataService.delete(id + 3);
+        PostModel post = service.getPostById(id);
         model.addAttribute("postModel", post);
         return "updatePost";
     }
@@ -251,8 +250,8 @@ public class HomeController {
      * @param model         The model to which attributes will be updated.
      * @return Redirects to the home page after updating the post.
      */
-    @PostMapping("doUpdate")
-    public String doUpdatePost(@Valid PostModel postModel, BindingResult bindingResult, Model model) {
+    @PostMapping("/post/update/doUpdate/{id}")
+    public String doUpdatePost(@PathVariable int id, @Valid PostModel postModel, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             System.out.println("Validation errors:");
             for (FieldError error : bindingResult.getFieldErrors()) {
@@ -263,7 +262,7 @@ public class HomeController {
         }
 
         // updates post
-        service.updatePost(postModel);
+        service.updatePost(postModel, id);
 
         // Get all posts including the updated one
         List<PostModel> posts = service.getPosts();
