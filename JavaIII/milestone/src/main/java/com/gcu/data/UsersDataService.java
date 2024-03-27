@@ -31,6 +31,7 @@ public class UsersDataService implements DataAccessInterface<SignUpModel>
         this.dataSource = dataSource;
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
+    
 
     /**
      * Retrieves all users from the database.
@@ -113,7 +114,7 @@ public class UsersDataService implements DataAccessInterface<SignUpModel>
      * @return true if the user was deleted successfully, false otherwise
      */
     @Override
-    public boolean delete(SignUpModel user) {
+    public boolean delete(int id) {
         // Implement logic to delete a user from the database
         return false;
     }

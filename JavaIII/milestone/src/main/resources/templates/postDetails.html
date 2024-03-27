@@ -44,13 +44,19 @@
         <div class="card" th:if="${postModel != null}">
             <img class="card-image" th:src="${postModel.imageUrl}" alt="Default Text">
             <div class="text-content">
+                <h1 th:text="${postModel.id}"></h1>
                 <h1 th:text="${postModel.title}" style="font-size: 7em;"></h1>
                 <p th:text="${postModel.description}" style="font-size: 4em;"></p>
                 <p th:text="${postModel.date}" style="font-size: 2em;"></p>
             </div>
             <div class="buttons-container">
-                <button style="background-color: white; padding: 10px;">Edit</button>
-                <button style="background-color: red; padding: 10px; color: white;">Delete</button>
+                <form th:action="@{/create}"> 
+                    <button style="background-color: white; padding: 10px;">Edit</button>
+                </form>
+                <form th:action="@{/delete}" method="post">
+                    <input type="hidden" name="postId" th:value="${postModel.id}" />
+                    <button style="background-color: red; padding: 10px; color: white;">Delete</button>
+                </form>
             </div>
         </div>
         <div th:if="${postModel == null}">

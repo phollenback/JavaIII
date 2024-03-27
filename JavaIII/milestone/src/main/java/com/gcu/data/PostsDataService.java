@@ -11,16 +11,27 @@ import org.springframework.stereotype.Service;
 import com.gcu.data.entity.PostEntity;
 import com.gcu.data.repository.PostRepository;
 
+/**
+ * A service class for managing post data that implements our data service interface
+ */
 @Service
 public class PostsDataService implements DataAccessInterface<PostEntity> {
 
     @Autowired
     private PostRepository postRepository;
 
+    /**
+     * Constructs a new PostsDataService with the given PostRepository.
+     * @param postRepository The repository for posts.
+     */
     public PostsDataService(PostRepository postRepository) {
         this.postRepository = postRepository;
     }
 
+    /**
+     * Retrieves all posts from the database.
+     * @return A list of all posts.
+     */
     @Override
     public List<PostEntity> findAll() {
         List<PostEntity> posts = new ArrayList<>();
@@ -34,14 +45,17 @@ public class PostsDataService implements DataAccessInterface<PostEntity> {
         return posts;
     }
 
+    /**
+     * Creates a new post.
+     * @param post The post to create.
+     * @return True if the post was successfully created, false otherwise.
+     */
     @Override
-    public boolean create(PostEntity post) 
-    {
+    public boolean create(PostEntity post) {
 
         // TODO -- Get user state so we can set the id accordingly
         post.setUserId(1);
 
-        
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy");
         LocalDate currentDate = LocalDate.now();
         String formattedDate = currentDate.format(formatter);
@@ -55,11 +69,21 @@ public class PostsDataService implements DataAccessInterface<PostEntity> {
         return true;
     }
 
+    /**
+     * Finds a post by its ID.
+     * @param id The ID of the post to find.
+     * @return The found post, or null if not found.
+     */
     @Override
     public PostEntity findById(int id) {
         return this.postRepository.findById(id).orElse(null);
     }
 
+    /**
+     * Updates an existing post.
+     * @param post The post to update.
+     * @return True if the post was successfully updated, false otherwise.
+     */
     @Override
     public boolean update(PostEntity post) {
         try {
@@ -71,10 +95,15 @@ public class PostsDataService implements DataAccessInterface<PostEntity> {
         return true;
     }
 
+    /**
+     * Deletes a post by its ID.
+     * @param id The ID of the post to delete.
+     * @return True if the post was successfully deleted, false otherwise.
+     */
     @Override
-    public boolean delete(PostEntity post) {
+    public boolean delete(int id) {
         try {
-            this.postRepository.delete(post);
+            this.postRepository.deleteById(id);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -82,5 +111,3 @@ public class PostsDataService implements DataAccessInterface<PostEntity> {
         return true;
     }
 }
-
-
