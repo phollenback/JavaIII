@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
  
-import com.gcu.business.LoginService;
+// import com.gcu.business.LoginService;
 import com.gcu.business.RegistrationService;
 import com.gcu.data.PostsDataService;
 import com.gcu.data.entity.PostEntity;
 import com.gcu.business.PostServiceInterface;
-import com.gcu.model.LoginModel;
+// import com.gcu.model.LoginModel;
 import com.gcu.model.PostModel;
 import com.gcu.model.SignUpModel;
 
@@ -34,8 +34,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Controller
 @RequestMapping("/")
 public class HomeController {
-    @Autowired
-    private LoginService ls;
+    // @Autowired
+    // private LoginService ls;
     @Autowired
     private RegistrationService rs;
     @Autowired
@@ -50,48 +50,13 @@ public class HomeController {
      */
     @GetMapping("/")
     public String showHomePage(Model model) {
+        
         List<PostModel> posts = service.getPosts();
         model.addAttribute("posts", posts);
         return "home";
     }
 
-    /**
-     * Displays the login form view.
-     * @param model the Spring MVC model for rendering the view
-     * @return the view name for the login page
-     */
-    @GetMapping("/login")
-    public String showLoginPage(Model model) {
-        // Display Login Form View
-        model.addAttribute("title", "Login Here!");
-        model.addAttribute("loginModel", new LoginModel());
-        return "login";
-    }
 
-
-    /**
-     * Handles the login form submission.
-     * @param loginModel the model representing the login form data
-     * @param bindingResult the Spring MVC binding result for validation
-     * @param model the Spring MVC model for rendering the view
-     * @return the view name for redirection after login
-     */
-    @PostMapping("/doLogin")
-    public String doLogin(@Valid LoginModel loginModel, BindingResult bindingResult, Model model) {
-        // check for validation errors
-        if (bindingResult.hasErrors()) {
-            model.addAttribute("title", "Login Here!");
-            return "login";
-        }
-
-        // Utilize the Login Service to check for user existence and login
-        if(ls.checkUserExistence(loginModel))
-            return "redirect:/";
-        
-        // Incorrect login credentials
-        model.addAttribute("title", "User does not exist. Please try again");    
-        return "login";
-    }
 
     /**
      * Displays the sign-up form view.

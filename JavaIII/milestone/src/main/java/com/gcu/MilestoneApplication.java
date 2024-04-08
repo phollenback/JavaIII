@@ -2,6 +2,7 @@ package com.gcu;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  * The main class to launch the Spring Boot application.
@@ -14,6 +15,12 @@ public class MilestoneApplication {
      * @param args Command line arguments passed to the application
      */
 	public static void main(String[] args) {
+
+		String plainTextPassword = "Carter";
+		String encodedPassword = new BCryptPasswordEncoder().encode(plainTextPassword);
+		System.out.println("Encoded password: " + encodedPassword);
+		
+		
 		SpringApplication.run(MilestoneApplication.class, args);
 	}
 

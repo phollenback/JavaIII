@@ -10,14 +10,20 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
 
+import com.gcu.data.entity.UserEntity;
+import com.gcu.data.repository.UsersRepository;
 import com.gcu.model.SignUpModel;
 
 /**
  * This class provides data access methods for managing users in a database.
  */
 @Service
-public class UsersDataService implements DataAccessInterface<SignUpModel> 
+public class UsersDataService implements DataAccessInterface<SignUpModel>, UsersDataAccessInterface 
 {
+
+    private final UsersRepository usersRepository;
+
+    
     @Autowired
     private DataSource dataSource;
     private JdbcTemplate jdbcTemplateObject;
@@ -27,9 +33,10 @@ public class UsersDataService implements DataAccessInterface<SignUpModel>
      * 
      * @param dataSource the data source to be used for database access
      */
-    public UsersDataService(DataSource dataSource) {
+    public UsersDataService(DataSource dataSource, UsersRepository usersRepository) {
         this.dataSource = dataSource;
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
+        this.usersRepository = usersRepository;
     }
     
 
@@ -117,5 +124,11 @@ public class UsersDataService implements DataAccessInterface<SignUpModel>
     public boolean delete(int id) {
         // Implement logic to delete a user from the database
         return false;
+    }
+
+
+    @Override
+    public UserEntity findByUsername(String username) {
+        return usersRepository.findByUsername(username);
     }
 }
