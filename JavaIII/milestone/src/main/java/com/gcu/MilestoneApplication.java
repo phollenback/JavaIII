@@ -16,7 +16,7 @@ public class MilestoneApplication {
      */
 	public static void main(String[] args) {
 
-		String plainTextPassword = "Carter";
+		String plainTextPassword = "pass";
 		String encodedPassword = new BCryptPasswordEncoder().encode(plainTextPassword);
 		System.out.println("Encoded password: " + encodedPassword);
 		

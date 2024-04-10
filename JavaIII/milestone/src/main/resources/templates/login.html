@@ -1,12 +1,10 @@
-
-
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/signInTemplate">
 <body>
     <div class="container" layout:fragment="content">
 
         <div th:if="${param.error}">
-    		Invalid User Name or Password
-    	</div>
+            Invalid User Name or Password
+        </div>
 
         <form class="form-inline" th:action="@{/login}" method="post">
 
@@ -30,6 +28,10 @@
             <br>
             <button type="submit" class="btn btn-primary" value="Sign In">Submit</button>
         </form>
+
+        <div>
+            <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+        </div>
     </div>
 </body>
 </html>

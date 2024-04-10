@@ -28,7 +28,7 @@ public class WebSecurityConfig
 		http
 			.csrf(csrf -> csrf.disable())
 			.authorizeHttpRequests(auth -> auth
-					.requestMatchers("/", "/images/**", "/service/**").permitAll()
+					.requestMatchers("/", "/images/**", "/service/**", "/signup", "/doSignUp").permitAll()
 					.anyRequest().authenticated())
 			.formLogin(form -> form
 					.loginPage("/login")
