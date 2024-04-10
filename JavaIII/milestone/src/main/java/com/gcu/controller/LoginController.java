@@ -6,11 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class LoginController 
-{
-
-    // @Autowired
-    // private LoginService ls;
-    
+{    
    /**
      * Displays the login form view.
      * @param model the Spring MVC model for rendering the view

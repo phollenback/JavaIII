@@ -20,11 +20,26 @@ public class UserBusinessService implements UserDetailsService {
 
     private final UsersDataService service;
 
+    /**
+     * Constructs a new UserBusinessService with the provided UsersDataService.
+     *
+     * @param service the data service for retrieving user details
+     */
     @Autowired
     public UserBusinessService(UsersDataService service) {
         this.service = service;
     }
 
+    /**
+     * Loads user details by the given username.
+     * <p>
+     * This method is called by the authentication provider to retrieve user details
+     * for authentication.
+     *
+     * @param username the username to load user details for
+     * @return a {@link UserDetails} object representing the loaded user
+     * @throws UsernameNotFoundException if the user with the given username is not found
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserEntity user = service.findByUsername(username);
