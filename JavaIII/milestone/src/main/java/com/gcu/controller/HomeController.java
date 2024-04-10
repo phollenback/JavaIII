@@ -41,8 +41,6 @@ public class HomeController {
     private PostServiceInterface service;
     @Autowired
     private PostsDataService dataService;
-    @Autowired
-    private UserBusinessService userBusinessService;
 
     /**
      * Displays the home page with a list of post models.
@@ -97,7 +95,6 @@ public class HomeController {
         {
             case 1:             // successful
                 // Authenticate the user after successful sign-up
-                authenticateUserAndSetSession(signUpModel.getUsername(), signUpModel.getPassword());
                 return "redirect:/";
             case -1:            // same username
                 model.addAttribute("title", "Username already taken!");
@@ -111,15 +108,8 @@ public class HomeController {
             default:
                 model.addAttribute("title", "Error during sign-up!");
                 return "signup";
-        }    
+        }        
     }
-
-    private void authenticateUserAndSetSession(String username, String password) {
-        UserDetails userDetails = userBusinessService.loadUserByUsername(username);
-        Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-    }
-    
 
      /**
      * Displays the starter page for user sign-in.
