@@ -29,7 +29,8 @@ public class PostEntity {
      * @param date The date of the post.
      * @param userId The ID of the user who created the post.
      */
-    public PostEntity(String imageUrl, String title, String description, String date, int userId) {
+    public PostEntity(String imageUrl, String title, String description, String date, int userId) 
+    {
         this.imageUrl = imageUrl;
         this.title = title;
         this.description = description;
