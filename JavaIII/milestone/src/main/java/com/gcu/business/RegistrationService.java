@@ -1,19 +1,23 @@
 package com.gcu.business;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import com.gcu.data.UsersDataService;
 import com.gcu.model.SignUpModel;
 
-
 /**
  * The RegistrationService class provides methods for user registration.
  */
+@Service
 public class RegistrationService 
 {
     @Autowired
     private UsersDataService service;
+
     
     /**
      * Initializes a user.
@@ -22,7 +26,7 @@ public class RegistrationService
      * @return true if the user is successfully initialized, false otherwise.
      */
     public int initializeUser(SignUpModel user)
-     {
+    {
         // create a list using the SignUp model and populate it with the users database table
         List<SignUpModel> users = service.findAll();
 
@@ -43,6 +47,12 @@ public class RegistrationService
                 return -3;
             }
         }
+		
+        
+        String encodedPassword = new BCryptPasswordEncoder().encode(user.getPassword());
+
+        // Set the encrypted password to the signUpModel
+        user.setPassword(encodedPassword);
 
         service.create(user);
         // verify in database, eventually
