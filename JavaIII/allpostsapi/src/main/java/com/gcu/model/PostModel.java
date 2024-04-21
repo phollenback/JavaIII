@@ -3,7 +3,8 @@ package com.gcu.model;
 import org.springframework.data.annotation.Id;
 
 /**
- * Represents a PostModel with imageUrl, title, description, date, and userId attributes.
+ * Represents a PostModel with imageUrl, title, description, date, and userId
+ * attributes.
  */
 public class PostModel {
     @Id
@@ -21,7 +22,8 @@ public class PostModel {
     }
 
     /**
-     * Constructs a new PostModel with the specified imageUrl, title, description, date, and userId.
+     * Constructs a new PostModel with the specified imageUrl, title, description,
+     * date, and userId.
      *
      * @param imageUrl    The URL of the image associated with the post.
      * @param title       The title of the post.
@@ -57,7 +59,7 @@ public class PostModel {
     }
 
     // Getter and Setter methods for other attributes...
-    
+
     /**
      * Retrieves the URL of the image associated with the post.
      *

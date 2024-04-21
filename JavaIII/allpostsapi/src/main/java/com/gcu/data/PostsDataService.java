@@ -10,7 +10,8 @@ import com.gcu.data.entity.PostEntity;
 import com.gcu.data.repository.PostRepository;
 
 /**
- * A service class for managing post data that implements our data service interface
+ * A service class for managing post data that implements our data service
+ * interface
  */
 @Service
 public class PostsDataService {
@@ -20,6 +21,7 @@ public class PostsDataService {
 
     /**
      * Constructs a new PostsDataService with the given PostRepository.
+     * 
      * @param postRepository The repository for posts.
      */
     public PostsDataService(PostRepository postRepository) {
@@ -28,6 +30,7 @@ public class PostsDataService {
 
     /**
      * Retrieves all posts from the database.
+     * 
      * @return A list of all posts.
      */
     public List<PostEntity> findAll() {

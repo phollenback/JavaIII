@@ -18,12 +18,9 @@ import com.gcu.model.SignUpModel;
  * This class provides data access methods for managing users in a database.
  */
 @Service
-public class UsersDataService implements DataAccessInterface<SignUpModel>, UsersDataAccessInterface 
-{
-
+public class UsersDataService implements DataAccessInterface<SignUpModel>, UsersDataAccessInterface {
     private final UsersRepository usersRepository;
 
-    
     @Autowired
     private DataSource dataSource;
     private JdbcTemplate jdbcTemplateObject;
@@ -38,7 +35,6 @@ public class UsersDataService implements DataAccessInterface<SignUpModel>, Users
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
         this.usersRepository = usersRepository;
     }
-    
 
     /**
      * Retrieves all users from the database.
@@ -79,7 +75,7 @@ public class UsersDataService implements DataAccessInterface<SignUpModel>, Users
         // Implement logic to find user by id from the database
         return null;
     }
-    
+
     /**
      * Creates a new post in the database
      * 
@@ -113,7 +109,7 @@ public class UsersDataService implements DataAccessInterface<SignUpModel>, Users
         int updatedRows = jdbcTemplateObject.update(sql, user.getUsername(), user.getEmail());
         return updatedRows > 0;
     }
-    
+
     /**
      * Deletes an existing user in the database.
      * 
@@ -126,7 +122,12 @@ public class UsersDataService implements DataAccessInterface<SignUpModel>, Users
         return false;
     }
 
-
+    /**
+     * Finds a user by their username using the repository.
+     *
+     * @param username the username of the user to find
+     * @return the UserEntity corresponding to the username, or null if not found
+     */
     @Override
     public UserEntity findByUsername(String username) {
         return usersRepository.findByUsername(username);

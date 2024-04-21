@@ -4,8 +4,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-
-
 import com.gcu.model.PostModel;
 
 /**
@@ -23,14 +21,14 @@ public class PostEntity {
 
     /**
      * Constructs a PostEntity with the specified attributes.
-     * @param imageUrl The URL of the post's image.
-     * @param title The title of the post.
+     *
+     * @param imageUrl    The URL of the post's image.
+     * @param title       The title of the post.
      * @param description The description of the post.
-     * @param date The date of the post.
-     * @param userId The ID of the user who created the post.
+     * @param date        The date of the post.
+     * @param userId      The ID of the user who created the post.
      */
-    public PostEntity(String imageUrl, String title, String description, String date, int userId) 
-    {
+    public PostEntity(String imageUrl, String title, String description, String date, int userId) {
         this.imageUrl = imageUrl;
         this.title = title;
         this.description = description;
@@ -40,6 +38,7 @@ public class PostEntity {
 
     /**
      * Constructs a PostEntity from a PostModel object.
+     *
      * @param post The PostModel object to construct the entity from.
      */
     public PostEntity(PostModel post) {
@@ -71,6 +70,7 @@ public class PostEntity {
 
     /**
      * Retrieves the URL of the post's image.
+     *
      * @return The URL of the post's image.
      */
     public String getImageUrl() {
@@ -79,6 +79,7 @@ public class PostEntity {
 
     /**
      * Sets the URL of the post's image.
+     *
      * @param imageUrl The URL of the post's image to set.
      */
     public void setImageUrl(String imageUrl) {
@@ -87,6 +88,7 @@ public class PostEntity {
 
     /**
      * Retrieves the title of the post.
+     *
      * @return The title of the post.
      */
     public String getTitle() {
@@ -95,6 +97,7 @@ public class PostEntity {
 
     /**
      * Sets the title of the post.
+     *
      * @param title The title of the post to set.
      */
     public void setTitle(String title) {
@@ -103,6 +106,7 @@ public class PostEntity {
 
     /**
      * Retrieves the description of the post.
+     *
      * @return The description of the post.
      */
     public String getDescription() {
@@ -111,6 +115,7 @@ public class PostEntity {
 
     /**
      * Sets the description of the post.
+     *
      * @param description The description of the post to set.
      */
     public void setDescription(String description) {
@@ -119,6 +124,7 @@ public class PostEntity {
 
     /**
      * Retrieves the date of the post.
+     *
      * @return The date of the post.
      */
     public String getDate() {
@@ -127,6 +133,7 @@ public class PostEntity {
 
     /**
      * Sets the date of the post.
+     *
      * @param date The date of the post to set.
      */
     public void setDate(String date) {
@@ -135,6 +142,7 @@ public class PostEntity {
 
     /**
      * Retrieves the ID of the user who created the post.
+     *
      * @return The ID of the user who created the post.
      */
     public int getUserId() {
@@ -143,6 +151,7 @@ public class PostEntity {
 
     /**
      * Sets the ID of the user who created the post.
+     *
      * @param userId The ID of the user who created the post to set.
      */
     public void setUserId(int userId) {
@@ -151,6 +160,7 @@ public class PostEntity {
 
     /**
      * Retrieves the ID of the post.
+     *
      * @return The ID of the post.
      */
     public int getId() {
@@ -159,11 +169,10 @@ public class PostEntity {
 
     /**
      * Sets the ID of the post.
+     *
      * @param userId The ID of the post to set.
      */
     public void setId(int id) {
         this.id = id;
     }
-
-
 }

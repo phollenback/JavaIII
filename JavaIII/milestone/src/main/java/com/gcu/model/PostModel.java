@@ -2,11 +2,10 @@ package com.gcu.model;
 
 
 /**
- * Represents a post model with details such as image URL, title, description, and date.
- * This class is typically used to encapsulate data for displaying posts.
+ * Represents a PostModel with imageUrl, title, description, date, and userId attributes.
  */
 public class PostModel {
-    public int id;
+    private int id;
     private String imageUrl;
     private String title;
     private String description;
@@ -14,102 +13,137 @@ public class PostModel {
     private int userId;
 
     /**
-     * Gets the URL of the post image.
-     * @return the image URL of the post
+     * Default constructor.
+     */
+    public PostModel() {
+    }
+
+    /**
+     * Constructs a new PostModel with the specified imageUrl, title, description, date, and userId.
+     *
+     * @param imageUrl    The URL of the image associated with the post.
+     * @param title       The title of the post.
+     * @param description The description or content of the post.
+     * @param date        The date when the post was created or published.
+     * @param userId      The ID of the user who created the post.
+     */
+    public PostModel(String imageUrl, String title, String description, String date, int userId) {
+        super();
+        this.imageUrl = imageUrl;
+        this.title = title;
+        this.description = description;
+        this.date = date;
+        this.userId = userId;
+    }
+
+    /**
+     * Retrieves the ID of the post.
+     *
+     * @return The ID of the post.
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Sets the ID of the post.
+     *
+     * @param id The ID to set.
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    // Getter and Setter methods for other attributes...
+    
+    /**
+     * Retrieves the URL of the image associated with the post.
+     *
+     * @return The imageUrl of the post.
      */
     public String getImageUrl() {
         return imageUrl;
     }
 
     /**
-     * Gets the title of the post.
-     * @return the title of the post
-     */
-    public String getTitle() {
-        return title;
-    }
-
-    /**
-     * Gets the description of the post.
-     * @return the description of the post
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * Gets the date of the post.
-     * @return the date of the post
-     */
-    public String getDate() {
-        return date;
-    }
-
-    /**
-     * Gets the userId of the post.
-     * @return the userId of the post
-     */
-    public int getUserId() {
-        return userId;
-    }
-
-    /**
-     * Sets the user id of the post.
-     * @param imageUrl the usre Id to set
-     */
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    /**
-     * Sets the image URL of the post.
-     * @param imageUrl the image URL to set
+     * Sets the URL of the image associated with the post.
+     *
+     * @param imageUrl The URL to set.
      */
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
 
     /**
+     * Retrieves the title of the post.
+     *
+     * @return The title of the post.
+     */
+    public String getTitle() {
+        return title;
+    }
+
+    /**
      * Sets the title of the post.
-     * @param title the title to set
+     *
+     * @param title The title to set.
      */
     public void setTitle(String title) {
         this.title = title;
     }
 
     /**
-     * Sets the description of the post.
-     * @param description the description to set
+     * Retrieves the description or content of the post.
+     *
+     * @return The description of the post.
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * Sets the description or content of the post.
+     *
+     * @param description The description to set.
      */
     public void setDescription(String description) {
         this.description = description;
     }
 
     /**
-     * Sets the date of the post.
-     * @param date the date to set
+     * Retrieves the date when the post was created or published.
+     *
+     * @return The date of the post.
+     */
+    public String getDate() {
+        return date;
+    }
+
+    /**
+     * Sets the date when the post was created or published.
+     *
+     * @param date The date to set.
      */
     public void setDate(String date) {
         this.date = date;
     }
 
-    
-    public int getId() {
-        return id;
+    /**
+     * Retrieves the ID of the user who created the post.
+     *
+     * @return The userId of the post creator.
+     */
+    public int getUserId() {
+        return userId;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-
-
-    public PostModel(String imageUrl, String title, String description, String date, int userId) {
-		super();
-		this.imageUrl = imageUrl;
-		this.title = title;
-		this.description = description;
-		this.date = date;
+    /**
+     * Sets the ID of the user who created the post.
+     *
+     * @param userId The userId to set.
+     */
+    public void setUserId(int userId) {
         this.userId = userId;
-	}
+    }
 }
+

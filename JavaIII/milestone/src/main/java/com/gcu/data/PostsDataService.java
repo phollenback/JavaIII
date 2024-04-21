@@ -12,7 +12,8 @@ import com.gcu.data.entity.PostEntity;
 import com.gcu.data.repository.PostRepository;
 
 /**
- * A service class for managing post data that implements our data service interface
+ * A service class for managing post data that implements our data service
+ * interface
  */
 @Service
 public class PostsDataService implements DataAccessInterface<PostEntity> {
@@ -22,6 +23,7 @@ public class PostsDataService implements DataAccessInterface<PostEntity> {
 
     /**
      * Constructs a new PostsDataService with the given PostRepository.
+     * 
      * @param postRepository The repository for posts.
      */
     public PostsDataService(PostRepository postRepository) {
@@ -30,6 +32,7 @@ public class PostsDataService implements DataAccessInterface<PostEntity> {
 
     /**
      * Retrieves all posts from the database.
+     * 
      * @return A list of all posts.
      */
     @Override
@@ -47,6 +50,7 @@ public class PostsDataService implements DataAccessInterface<PostEntity> {
 
     /**
      * Creates a new post.
+     * 
      * @param post The post to create.
      * @return True if the post was successfully created, false otherwise.
      */
@@ -71,6 +75,7 @@ public class PostsDataService implements DataAccessInterface<PostEntity> {
 
     /**
      * Finds a post by its ID.
+     * 
      * @param id The ID of the post to find.
      * @return The found post, or null if not found.
      */
@@ -81,6 +86,7 @@ public class PostsDataService implements DataAccessInterface<PostEntity> {
 
     /**
      * Updates an existing post.
+     * 
      * @param post The post to update.
      * @return True if the post was successfully updated, false otherwise.
      */
@@ -101,6 +107,7 @@ public class PostsDataService implements DataAccessInterface<PostEntity> {
 
     /**
      * Deletes a post by its ID.
+     * 
      * @param id The ID of the post to delete.
      * @return True if the post was successfully deleted, false otherwise.
      */

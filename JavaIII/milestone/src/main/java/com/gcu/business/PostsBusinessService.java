@@ -82,8 +82,12 @@ public class PostsBusinessService implements PostServiceInterface
         return null;
     }
 
-
-
+    /**
+     * Deletes a post based on the provided ID.
+     *
+     * @param id the ID of the post to be deleted
+     * @return true if the post was successfully deleted, false otherwise
+     */
     @Override
     public boolean deletePost(int id)
     {

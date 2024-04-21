@@ -31,8 +31,6 @@ import jakarta.validation.Valid;
 @Controller
 @RequestMapping("/")
 public class HomeController {
-    // @Autowired
-    // private LoginService ls;
     @Autowired
     private RegistrationService rs;
     @Autowired
@@ -50,7 +48,13 @@ public class HomeController {
         model.addAttribute("posts", posts);
         return "home";
     }
-
+    
+    /**
+     * Retrieves a list of posts from a service and adds them to the model for display.
+     *
+     * @param model the model to which post data and title will be added
+     * @return the name of the view to be rendered, in this case, "posts"
+     */
     @GetMapping("/getposts")
 	public String getOrders(Model model)
 	{

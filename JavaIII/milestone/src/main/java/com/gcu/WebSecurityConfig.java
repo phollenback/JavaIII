@@ -12,8 +12,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import com.gcu.business.UserBusinessService;
 
 @Configuration
-public class WebSecurityConfig 
-{
+public class WebSecurityConfig {
     private UserBusinessService service;
 
     /**
@@ -36,28 +35,29 @@ public class WebSecurityConfig
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/", "/images/**", "/service/**", "/signup", "/doSignUp").permitAll()
-                    .anyRequest().authenticated())
-            .formLogin(form -> form
-                    .loginPage("/login")
-                    .usernameParameter("username")
-                    .passwordParameter("password")
-                    .permitAll()
-                    .defaultSuccessUrl("/", true))
-            .logout(lo -> lo
-                    .logoutUrl("/logout")
-                    .invalidateHttpSession(true)
-                    .clearAuthentication(true)
-                    .permitAll()
-                    .logoutSuccessUrl("/"));
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/", "/images/**", "/service/**", "/signup", "/doSignUp").permitAll()
+                        .anyRequest().authenticated())
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .usernameParameter("username")
+                        .passwordParameter("password")
+                        .permitAll()
+                        .defaultSuccessUrl("/", true))
+                .logout(lo -> lo
+                        .logoutUrl("/logout")
+                        .invalidateHttpSession(true)
+                        .clearAuthentication(true)
+                        .permitAll()
+                        .logoutSuccessUrl("/"));
 
         return http.build();
     }
 
     /**
-     * Configures the authentication manager to use the UserBusinessService and password encoder.
+     * Configures the authentication manager to use the UserBusinessService and
+     * password encoder.
      *
      * @param auth the AuthenticationManagerBuilder to configure
      * @throws Exception if an error occurs during configuration
@@ -65,8 +65,8 @@ public class WebSecurityConfig
     @Autowired
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
-            .userDetailsService(service)
-            .passwordEncoder(passwordEncoder());
+                .userDetailsService(service)
+                .passwordEncoder(passwordEncoder());
     }
 
     /**
@@ -77,5 +77,5 @@ public class WebSecurityConfig
     private PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-	
+
 }

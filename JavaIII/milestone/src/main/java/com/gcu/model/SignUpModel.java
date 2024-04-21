@@ -8,6 +8,16 @@ import jakarta.validation.constraints.Size;
  */
 public class SignUpModel
  {
+    /**
+     * Constructs a new SignUpModel with the specified details.
+     *
+     * @param firstName the first name of the user
+     * @param lastName the last name of the user
+     * @param email the email address of the user
+     * @param phoneNumber the phone number of the user
+     * @param username the username chosen by the user
+     * @param password the password chosen by the user
+     */
     public SignUpModel(String firstName, String lastName, String email, String phoneNumber, String username, String password) {
         this.firstName = firstName;
         this.lastName = lastName;

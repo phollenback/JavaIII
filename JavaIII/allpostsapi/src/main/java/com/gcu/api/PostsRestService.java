@@ -12,24 +12,30 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gcu.business.PostsBusinessService;
 import com.gcu.model.PostModel;
 
+/**
+ * REST controller for managing posts.
+ */
 @RestController
 @RequestMapping("/service")
 public class PostsRestService {
-    @Autowired
+	@Autowired
 	PostsBusinessService service;
-	
-	@GetMapping(path="/posts")
-	public ResponseEntity<?> getPosts()
-	{
+
+	/**
+	 * Retrieves all posts.
+	 *
+	 * @return a ResponseEntity containing a list of posts if found, or an
+	 *         appropriate HTTP status code if not
+	 */
+	@GetMapping(path = "/posts")
+	public ResponseEntity<?> getPosts() {
 		try {
 			List<PostModel> posts = service.getPosts();
-			if(posts.isEmpty())
+			if (posts.isEmpty())
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			else
 				return new ResponseEntity<>(posts, HttpStatus.OK);
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
