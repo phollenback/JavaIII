@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 // import com.gcu.business.LoginService;
@@ -70,6 +71,28 @@ public class HomeController {
 		model.addAttribute("posts", posts);
 		return "posts";
 	}
+
+    /**
+     * Returns the selected post
+     * @param model
+     * @return
+     */
+    @GetMapping("/findpost")
+    public String getPost(Model model)
+    {
+        String hostname = "localhost";
+		int port = 8082;
+		
+		String url = "http://" + hostname + ":" + port + "/service/posts/" + 4;
+		RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<PostModel> response = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<PostModel>() {});
+        PostModel post = response.getBody();
+        
+		
+		model.addAttribute("title", "Post of Selected id:");
+		model.addAttribute("post", post);
+		return "postId";
+    }
 
     /**
      * Displays the sign-up form view.
