@@ -33,10 +33,12 @@ public class PostsDataService {
      * 
      * @return A list of all posts.
      */
-    public PostEntity findById(int id)
+    public PostEntity findById(Long id)
      {
+        int intId = id.intValue();
+
         // grab by id
-        PostEntity returnThis = new PostEntity(postRepository.findById(id));
+        PostEntity returnThis = new PostEntity(postRepository.getPostById(intId));
         
         return returnThis;
     }
