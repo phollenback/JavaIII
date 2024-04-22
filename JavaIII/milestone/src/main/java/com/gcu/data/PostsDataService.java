@@ -57,9 +57,6 @@ public class PostsDataService implements DataAccessInterface<PostEntity> {
     @Override
     public boolean create(PostEntity post) {
 
-        // TODO -- Get user state so we can set the id accordingly
-        post.setUserId(1);
-
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy");
         LocalDate currentDate = LocalDate.now();
         String formattedDate = currentDate.format(formatter);

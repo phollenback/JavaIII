@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +19,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
+import com.gcu.data.UsersDataService;
+import com.gcu.data.entity.UserEntity;
+import jakarta.servlet.http.HttpServletRequest;
+
 // import com.gcu.business.LoginService;
 import com.gcu.business.RegistrationService;
 import com.gcu.business.PostServiceInterface;
@@ -25,16 +32,23 @@ import com.gcu.model.SignUpModel;
 
 import jakarta.validation.Valid;
 
+
+
 /**
  * Handles requests related to the home page, sign-up, login, and user sign-in.
  */
 @Controller
 @RequestMapping("/")
 public class HomeController {
+
     @Autowired
     private RegistrationService rs;
+
     @Autowired
     private PostServiceInterface service;
+
+    @Autowired
+    private UsersDataService usersDataService;
 
     /**
      * Displays the home page with a list of post models.
@@ -42,8 +56,27 @@ public class HomeController {
      * @return the view name for the home page
      */
     @GetMapping("/")
-    public String showHomePage(Model model) {
-        
+    public String showHomePage(Model model, HttpServletRequest request) {
+    
+
+        try 
+        {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            String username = userDetails.getUsername();
+            UserEntity user = usersDataService.findByUsername(username);
+
+            // Now you can get the user ID
+            int userId = user.getId();
+
+            // Store user ID in session
+            request.getSession().setAttribute("userId", userId);
+        } catch (Exception e) 
+        {
+            // Handle the exception, e.g., log it or show a user-friendly error message
+            e.printStackTrace(); // Example: print the stack trace
+        }
+    
         List<PostModel> posts = service.getPosts();
         model.addAttribute("posts", posts);
         return "home";
@@ -143,11 +176,15 @@ public class HomeController {
      * @return the name of the view template for creating a post
      */
     @GetMapping("/create")
-    public String showCreatePostPage(Model model) 
+    public String showCreatePostPage(Model model, HttpServletRequest request) 
     {
         
         model.addAttribute("title", "Create Post Here!");
-        model.addAttribute("postModel", new PostModel("", "", "", "", 0));
+
+        Integer userId = (Integer) request.getSession().getAttribute("userId");
+        System.out.println("==>" + userId);
+
+        model.addAttribute("postModel", new PostModel("", "", "", "", userId));
         return "createPost";
     }
 
