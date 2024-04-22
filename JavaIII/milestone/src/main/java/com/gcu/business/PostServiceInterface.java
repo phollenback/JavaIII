@@ -33,4 +33,13 @@ public interface PostServiceInterface
     public PostModel getPostById(int id);
 
     public boolean deletePost(int id);
+
+    
+    /**
+     * Retrieves the list of posts belonging to a user with the given user ID.
+     * 
+     * @param userId the ID of the user
+     * @return the list of posts belonging to the user
+     */
+    public List<PostModel> getPostsByUserId(int userId);
 }

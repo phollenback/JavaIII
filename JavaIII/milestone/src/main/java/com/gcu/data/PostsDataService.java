@@ -118,4 +118,15 @@ public class PostsDataService implements DataAccessInterface<PostEntity> {
         }
         return true;
     }
+
+
+    /**
+     * Finds all posts associated with a specific user ID.
+     *
+     * @param userId The ID of the user whose posts are to be retrieved.
+     * @return A list of PostEntity objects associated with the given user ID.
+     */
+    public List<PostEntity> findByUserId(int userId) {
+        return this.postRepository.findByUserId(userId);
+    }
 }

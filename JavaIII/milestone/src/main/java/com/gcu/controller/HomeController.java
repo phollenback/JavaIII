@@ -66,6 +66,9 @@ public class HomeController {
             String username = userDetails.getUsername();
             UserEntity user = usersDataService.findByUsername(username);
 
+            // Store user details in session
+            request.getSession().setAttribute("user", user);
+
             // Now you can get the user ID
             int userId = user.getId();
 
@@ -182,7 +185,6 @@ public class HomeController {
         model.addAttribute("title", "Create Post Here!");
 
         Integer userId = (Integer) request.getSession().getAttribute("userId");
-        System.out.println("==>" + userId);
 
         model.addAttribute("postModel", new PostModel("", "", "", "", userId));
         return "createPost";
@@ -234,6 +236,33 @@ public class HomeController {
         model.addAttribute("postModel", post);
         return "postDetails";
     }
+
+
+    /**
+     * Retrieves all of the posts from the 
+     *
+     * @param id    The ID of the user
+     * @param model The model to which post details will be added.
+     * @return The view name for displaying post details.
+     */
+    @GetMapping("/account")
+    public String showAccount(Model model, HttpServletRequest request) {
+
+        UserEntity user = (UserEntity) request.getSession().getAttribute("user");
+        String name = user.getUsername();
+        int userId = user.getId();
+
+        // Logic to retrieve posts by userId
+        List<PostModel> posts = service.getPostsByUserId(userId);
+        
+        // Add posts to the model
+        model.addAttribute("posts", posts);
+        model.addAttribute("name", name);
+        
+        return "account";
+    }
+
+
 
     /**
      * Deletes a post based on its ID.

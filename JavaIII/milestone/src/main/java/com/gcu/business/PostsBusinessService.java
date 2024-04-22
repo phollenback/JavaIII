@@ -93,4 +93,19 @@ public class PostsBusinessService implements PostServiceInterface
     {
         return service.delete(id);
     }
+
+
+
+    @Override
+    public List<PostModel> getPostsByUserId(int userId) 
+    {
+        List<PostEntity> postEntities = service.findByUserId(userId);
+        List<PostModel> postsDomain = new ArrayList<>();
+        for (PostEntity entity : postEntities) {
+            PostModel postModel = new PostModel(entity.getImageUrl(), entity.getTitle(), entity.getDescription(), entity.getDate(), entity.getUserId());
+            postModel.setId(entity.getId()); // Set the ID in the PostModel
+            postsDomain.add(postModel);
+        }
+        return postsDomain;
+    }
 }
