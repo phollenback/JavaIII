@@ -59,39 +59,31 @@ public class HomeController {
     @GetMapping("/getposts")
 	public String getOrders(Model model)
 	{
-		String hostname = "localhost";
-		int port = 8081;
-		
-		String url = "http://" + hostname + ":" + port + "/service/posts";
-		RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<List<PostModel>> rateResponse = restTemplate.exchange(url,  HttpMethod.GET, null, new ParameterizedTypeReference<List<PostModel>>() {});
-		List<PostModel> posts = rateResponse.getBody();
-		
-		model.addAttribute("title", "List of Posts");
+        // get all posts
+		List<PostModel> posts = service.getPosts();
+        // pass posts in key value
+        model.addAttribute("title", "List of Posts");
 		model.addAttribute("posts", posts);
+        // return posts
 		return "posts";
 	}
 
     /**
-     * Returns the selected post
-     * @param model
-     * @return
+     * Displays the 
+     * @param model Post Model for returned posts
+     * @return posts html page
      */
     @GetMapping("/findpost")
     public String getPost(@RequestParam("postId") int id, Model model)
     {
-        String hostname = "localhost";
-		int port = 8082;
-		
-		String url = "http://" + hostname + ":" + port + "/service/posts/" + id;
-		RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<PostModel> response = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<PostModel>() {});
-        PostModel post = response.getBody();
-        
-		
-		model.addAttribute("title", "Post of Selected id:");
-		model.addAttribute("post", post);
-		return "postId";
+        // get model by id
+        PostModel post = service.getPostById(id);
+
+        // pass post in key value pairs
+        model.addAttribute("title", "List of Posts");
+		model.addAttribute("posts", post);
+        // return
+		return "posts";
     }
 
     /**
