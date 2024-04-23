@@ -18,7 +18,7 @@ public class PostBusinessService
         // get post entity from layer below
         PostEntity convert = postService.getPostById(id);
         // convert to PostModel
-        PostModel returnThis = new PostModel(convert.getImageUrl(), convert.getTitle(), convert.getDescription(), convert.getDate(), convert.getUserId());
+        PostModel returnThis = new PostModel(convert.getId(),convert.getImageUrl(), convert.getTitle(), convert.getDescription(), convert.getDate(), convert.getUserId());
         // set id
         returnThis.setId(convert.getId());
         

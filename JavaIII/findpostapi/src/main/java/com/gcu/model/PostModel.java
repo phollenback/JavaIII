@@ -33,8 +33,9 @@ public class PostModel {
      * @param date        The date when the post was created or published.
      * @param userId      The ID of the user who created the post.
      */
-    public PostModel(String imageUrl, String title, String description, String date, int userId) {
+    public PostModel(int postId, String imageUrl, String title, String description, String date, int userId) {
         super();
+        this.id = postId;
         this.imageUrl = imageUrl;
         this.title = title;
         this.description = description;
