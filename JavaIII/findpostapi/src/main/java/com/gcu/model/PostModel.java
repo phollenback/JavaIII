@@ -2,6 +2,8 @@ package com.gcu.model;
 
 import org.springframework.data.annotation.Id;
 
+import com.gcu.data.entity.PostEntity;
+
 /**
  * Represents a PostModel with imageUrl, title, description, date, and userId
  * attributes.
@@ -38,6 +40,19 @@ public class PostModel {
         this.description = description;
         this.date = date;
         this.userId = userId;
+    }
+
+    /**
+     * Constructs a PostEntity from a PostModel object.
+     * 
+     * @param post The PostModel object to construct the entity from.
+     */
+    public PostModel(PostEntity post) {
+        this.imageUrl = post.getImageUrl();
+        this.title = post.getTitle();
+        this.description = post.getDescription();
+        this.date = post.getDate();
+        this.userId = post.getUserId();
     }
 
     /**

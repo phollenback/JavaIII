@@ -28,12 +28,14 @@ public class PostRestService {
      *         appropriate HTTP status code if not
      */
     @GetMapping(path = "/posts/{id}")
-    public ResponseEntity<?> getPost(@PathVariable Long id) {
+    public ResponseEntity<?> getPost(@PathVariable int id) {
         try {
             PostModel post = service.getPostById(id);  // grab from lower layer
             if (post != null) {
                 return new ResponseEntity<>(post, HttpStatus.OK);
-            } else {
+            } 
+            else
+            {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);  // Returns a 404 status if the post is not found
             }
         } catch (Exception e) {

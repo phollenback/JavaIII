@@ -10,6 +10,6 @@ import com.gcu.model.PostModel;
  */
 public interface PostRepository extends CrudRepository<PostEntity, Integer> {
 
-    PostModel getPostById(int intId);
+    // PostModel getPostById(int intId);
 
 }

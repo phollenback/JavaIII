@@ -78,12 +78,12 @@ public class HomeController {
      * @return
      */
     @GetMapping("/findpost")
-    public String getPost(Model model)
+    public String getPost(@RequestParam("postId") int postId, Model model)
     {
         String hostname = "localhost";
 		int port = 8082;
 		
-		String url = "http://" + hostname + ":" + port + "/service/posts/" + 4;
+		String url = "http://" + hostname + ":" + port + "/service/posts/" + postId;
 		RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<PostModel> response = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<PostModel>() {});
         PostModel post = response.getBody();

@@ -2,12 +2,16 @@ package com.gcu.data;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
+import javax.management.RuntimeErrorException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gcu.data.entity.PostEntity;
 import com.gcu.data.repository.PostRepository;
+import com.gcu.model.PostModel;
 
 /**
  * A service class for managing post data that implements our data service
@@ -33,13 +37,16 @@ public class PostsDataService {
      * 
      * @return A list of all posts.
      */
-    public PostEntity findById(Long id)
+    public PostEntity getPostById(int id)
      {
-        int intId = id.intValue();
+        Optional<PostEntity> post = postRepository.findById(id); 
 
-        // grab by id
-        PostEntity returnThis = new PostEntity(postRepository.getPostById(intId));
+        if(post.isPresent())
+        {
+            return post.get();
+        }
+
+        throw new RuntimeException("Returned post was not correct for " + id);
         
-        return returnThis;
     }
 }
