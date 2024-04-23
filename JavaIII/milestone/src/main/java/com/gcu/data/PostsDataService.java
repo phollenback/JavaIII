@@ -39,9 +39,9 @@ public class PostsDataService implements DataAccessInterface<PostEntity> {
     public List<PostEntity> findAll() {
         List<PostEntity> posts = new ArrayList<>();
         try {
-            Iterable<PostEntity> ordersIterable = postRepository.findAll();
+            Iterable<PostEntity> postsIterable = postRepository.findAll();
             posts = new ArrayList<>();
-            ordersIterable.forEach(posts::add);
+            postsIterable.forEach(posts::add);
         } catch (Exception e) {
             e.printStackTrace();
         }

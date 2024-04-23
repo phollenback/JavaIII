@@ -92,7 +92,7 @@ public class HomeController {
      * @return the name of the view to be rendered, in this case, "posts"
      */
     @GetMapping("/getposts")
-	public String getOrders(Model model)
+	public String getPosts(Model model)
 	{
 		String hostname = "localhost";
 		int port = 8081;
