@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import com.gcu.data.UsersDataService;
@@ -94,18 +95,32 @@ public class HomeController {
     @GetMapping("/getposts")
 	public String getPosts(Model model)
 	{
-		String hostname = "localhost";
-		int port = 8081;
-		
-		String url = "http://" + hostname + ":" + port + "/service/posts";
-		RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<List<PostModel>> rateResponse = restTemplate.exchange(url,  HttpMethod.GET, null, new ParameterizedTypeReference<List<PostModel>>() {});
-		List<PostModel> posts = rateResponse.getBody();
-		
-		model.addAttribute("title", "List of Posts");
+        // get all posts
+		List<PostModel> posts = service.getPosts();
+        // pass posts in key value
+        model.addAttribute("title", "List of Posts");
 		model.addAttribute("posts", posts);
+        // return posts
 		return "posts";
 	}
+
+    /**
+     * Displays the 
+     * @param model Post Model for returned posts
+     * @return posts html page
+     */
+    @GetMapping("/findpost")
+    public String getPost(@RequestParam("postId") int id, Model model)
+    {
+        // get model by id
+        PostModel post = service.getPostById(id);
+
+        // pass post in key value pairs
+        model.addAttribute("title", "List of Posts");
+		model.addAttribute("posts", post);
+        // return
+		return "posts";
+    }
 
     /**
      * Displays the sign-up form view.
