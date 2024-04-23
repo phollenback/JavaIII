@@ -80,19 +80,14 @@
         </div>
         
         <div class="gallery-container">
-            <a th:href="@{findpost}">View One Posts</a><br/>
-        </div>
-        <!-- <div class="gallery-container">
-            <form action="@{/findpost}" method="post">
-                <label for="postId">Select a Post ID:</label>
-                <select id="postId" name="id">
-                    <option th:each="post : ${posts}" 
-                            th:value="${post.id}" 
-                            th:text="${post.id}">Post ID</option>
+            <form action="/findpost" method="GET">
+                <select name="postId">
+                    <option th:each="post : ${posts}" th:value="${post.id}" th:text="${post.title}">Post Title</option>
                 </select>
                 <button type="submit">View Selected Post</button>
             </form>
-        </div> -->
+        </div>
+        
         
     </div>
     
