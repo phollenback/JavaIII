@@ -1,35 +1,66 @@
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/signInTemplate">
-<body>
-    <div class="container" layout:fragment="content">
+<head>
+    <style type="text/css">
+        .info-header {
+            font-size: 1.5em;
+            display: block;
+        }
 
-        <div th:if="${param.error}">
+        input {
+            border: solid 3px rgb(253, 100, 100);
+            border-radius: 10px;
+            width: 20em;
+            font-size: 2em;
+        }
+
+        form {
+            width: fit-content;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        .form-group
+        {
+            margin: 0vh 0 4vh 0
+        }
+
+        button {
+            background-color: rgb(253, 100, 100);
+            border-radius: 20px;
+            padding: 10px;
+            width: 35%;
+            border: transparent;
+            font-size: 2em;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <div layout:fragment="content">
+
+        <div th:if="${param.error}" style="color: red; font-size: 2em;">
             Invalid User Name or Password
         </div>
-
-        <form class="form-inline" th:action="@{/login}" method="post">
-
-            <div class="form-group">
-                <label for="exampleInputName2">Username</label>
-
-                <input type="text" class="form-control" name="username" placeholder="JohnDoe23" required>
-
-
-            </div>
+        
+        <form action="/login" th:action="@{/login}" method="post">
+           
+                <h2 style="font-size: 3em; font-weight: 800; margin: 0px 0 50px 0;">Login</h2>
             
-            <br><br>
-
             <div class="form-group">
-
-              <label for="exampleInputEmail2">Password</label>
-
-              <input type="text" class="form-control" name="password" placeholder="Password23!">
-              
+                <label for="username" class="info-header">Username</label>
+                <input type="text" id="username"  name="username" placeholder="Enter your Username" required>
             </div>
-            <br>
-            <button type="submit" class="btn btn-primary" value="Sign In">Submit</button>
+            <div class="form-group">
+                <label for="password"  class="info-header">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" value="Sign In">Login</button>
         </form>
 
-        <div>
+        <div style="font-size: 1.5em">
             <p>Don't have an account? <a href="/signup">Sign Up</a></p>
         </div>
     </div>

@@ -44,7 +44,6 @@
         <div class="card" th:if="${postModel != null}">
             <img class="card-image" th:src="${postModel.imageUrl}" alt="Default Text">
             <div class="text-content">
-                <h1 th:text="${postModel.id}"></h1>
                 <h1 th:text="${postModel.title}" style="font-size: 7em;"></h1>
                 <p th:text="${postModel.description}" style="font-size: 4em;"></p>
                 <p th:text="${postModel.date}" style="font-size: 2em;"></p>

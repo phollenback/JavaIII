@@ -37,7 +37,7 @@ public class WebSecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/images/**", "/service/**", "/signup", "/doSignUp").permitAll()
+                        .requestMatchers("/signup", "/doSignUp").permitAll()
                         .anyRequest().authenticated())
                 .formLogin(form -> form
                         .loginPage("/login")
@@ -50,7 +50,7 @@ public class WebSecurityConfig {
                         .invalidateHttpSession(true)
                         .clearAuthentication(true)
                         .permitAll()
-                        .logoutSuccessUrl("/"));
+                        .logoutSuccessUrl("/login"));
 
         return http.build();
     }

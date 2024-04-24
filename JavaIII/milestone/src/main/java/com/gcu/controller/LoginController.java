@@ -16,7 +16,7 @@ public class LoginController
     public String showLoginPage(Model model) {
 
         // Display Login Form View
-        model.addAttribute("title", "Login Here!");
+        model.addAttribute("title", "Login");
         return "login";
     }
     

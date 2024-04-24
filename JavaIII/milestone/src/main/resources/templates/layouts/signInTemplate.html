@@ -10,43 +10,56 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style type="text/css">
+
       button {
         width: 75px;
         margin-right: 10px;
         margin-top: 8px;
       }
       body {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        margin: 0;
-        background-color: #f8f8f8;
-        background: linear-gradient(to right, #feffff, #868686);
+        
       }
       h1 {
-        font-size: 50px;
-        color: black; /* Orange color, adjust as needed */
+        font-size: 10em;
+        color: rgb(255, 79, 79); /* Orange color, adjust as needed */
         font-weight: bold;
         padding-bottom: 10px
       }
+
       label {
         padding-right: 5px;
       }
+
       .flex-container {
-        display: flex;
-        justify-content: center;
+        display: grid;
+        place-items: center;
+        width: 100vw;
+        height: 60vh;
       }
+
+      .hero {
+        width: 100vw; 
+        display: grid; 
+        place-items: center; 
+        background-color: rgb(230, 230, 230);
+        padding: 50px;
+      }
+
+
     </style>
   </head>
 
-  <body style="justify-content: center; align-items: center; display: flex">
-    <div align="center">
-      <h1 th:text="${title}">Default Message Text</h1>
-
-      <section layout:fragment="content">
-        <p>My Body Contents</p>
-      </section>
+  <body>
+    <div class="hero">
+      <h1>Welcome to Portfol.IO!</h1>
     </div>
+    <div class="flex-container">
+      <div>
+        <section layout:fragment="content">
+          <p>My Body Contents</p>   
+        </section>
+        
+      </div>
+  </div>
   </body>
 </html>
