@@ -83,6 +83,24 @@ public class HomeController {
     }
     
     /**
+     * Retrieves a list of posts from a service and adds them to the model for display.
+     *
+     * @param model the model to which post data and title will be added
+     * @return the name of the view to be rendered, in this case, "posts"
+     */
+    @GetMapping("/getposts")
+	public String getPosts(Model model)
+	{
+        // get all posts
+		List<PostModel> posts = service.getPosts();
+        // pass posts in key value
+        model.addAttribute("title", "List of Posts");
+		model.addAttribute("posts", posts);
+        // return posts
+		return "posts";
+	}
+
+    /**
      * Displays the 
      * @param model Post Model for returned posts
      * @return posts html page
