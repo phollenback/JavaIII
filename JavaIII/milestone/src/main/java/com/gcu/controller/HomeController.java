@@ -3,9 +3,6 @@ package com.gcu.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.client.RestTemplate;
 
 import com.gcu.data.UsersDataService;
 import com.gcu.data.entity.UserEntity;
@@ -83,27 +79,9 @@ public class HomeController {
     
         List<PostModel> posts = service.getPosts();
         model.addAttribute("posts", posts);
-        return "home";
+        return "posts";
     }
     
-    /**
-     * Retrieves a list of posts from a service and adds them to the model for display.
-     *
-     * @param model the model to which post data and title will be added
-     * @return the name of the view to be rendered, in this case, "posts"
-     */
-    @GetMapping("/getposts")
-	public String getPosts(Model model)
-	{
-        // get all posts
-		List<PostModel> posts = service.getPosts();
-        // pass posts in key value
-        model.addAttribute("title", "List of Posts");
-		model.addAttribute("posts", posts);
-        // return posts
-		return "posts";
-	}
-
     /**
      * Displays the 
      * @param model Post Model for returned posts
