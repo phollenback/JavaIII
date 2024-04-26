@@ -105,8 +105,8 @@ public class HomeController {
      * @param model Post Model for returned posts
      * @return posts html page
      */
-    @GetMapping("/findpost")
-    public String getPost(@RequestParam("postId") int id, Model model)
+    @GetMapping("/findpost/{id}")
+    public String getPost(@PathVariable("id") int id, Model model)
     {
         // get model by id
         PostModel post = service.getPostById(id);
