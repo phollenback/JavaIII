@@ -1,9 +1,11 @@
 package com.gcu.model;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 
 /**
  * Represents a PostModel with imageUrl, title, description, date, and userId attributes.
  */
+@JacksonXmlRootElement
 public class PostModel {
     private int id;
     private String imageUrl;
