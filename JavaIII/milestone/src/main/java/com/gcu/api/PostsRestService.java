@@ -14,20 +14,37 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gcu.business.PostServiceInterface;
 import com.gcu.model.PostModel;
 
+
+/**
+ * Rest controller for managing posts.
+ */
 @RestController
 @RequestMapping("/service")
 public class PostsRestService {
     @Autowired
 	private PostServiceInterface service;
 	
-	@GetMapping(value="/posts", produces={MediaType.APPLICATION_JSON_VALUE,
+	
+    /**
+     * Retrieves a list of all posts.
+     *
+     * @return A list of {@link PostModel} objects representing the posts.
+     */
+    @GetMapping(value="/posts", produces={MediaType.APPLICATION_JSON_VALUE,
 			MediaType.APPLICATION_XML_VALUE})
 	public List<PostModel> getPosts()
 	{
 		return service.getPosts();
 	}
 	
-	@GetMapping("/getpost/{id}")
+	
+    /**
+     * Retrieves a post by its ID.
+     *
+     * @param id The ID of the post to retrieve.
+     * @return A {@link ResponseEntity} containing the {@link PostModel} object if found, or a NOT_FOUND status if not found.
+     */
+    @GetMapping("/getpost/{id}")
     public ResponseEntity<PostModel> getPosts(@PathVariable("id") int id) {
         try {
             PostModel post = service.getPostById(id);

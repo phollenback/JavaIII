@@ -96,6 +96,13 @@ public class PostsBusinessService implements PostServiceInterface
 
 
 
+    
+    /**
+     * Retrieves a list of posts for a given user ID.
+     *
+     * @param userId The ID of the user whose posts are to be retrieved.
+     * @return A list of {@link PostModel} objects representing the posts of the user.
+     */
     @Override
     public List<PostModel> getPostsByUserId(int userId) 
     {
