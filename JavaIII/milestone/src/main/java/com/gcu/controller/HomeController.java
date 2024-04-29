@@ -49,7 +49,9 @@ public class HomeController {
 
     /**
      * Displays the home page with a list of post models.
-     * @param model the Spring MVC model for rendering the view
+     *
+     * @param model   the Spring MVC model for rendering the view
+     * @param request the HTTP servlet request
      * @return the view name for the home page
      */
     @GetMapping("/")
@@ -103,6 +105,7 @@ public class HomeController {
     /**
      * Displays the 
      * @param model Post Model for returned posts
+     * @param id grabs the id to search from the url
      * @return posts html page
      */
     @GetMapping("/findpost/{id}")
@@ -187,6 +190,7 @@ public class HomeController {
     /**
      * Displays the page for creating a new post.
      * @param model the model to be populated with attributes
+     * @param request the HTTP servlet request
      * @return the name of the view template for creating a post
      */
     @GetMapping("/create")
@@ -252,8 +256,8 @@ public class HomeController {
     /**
      * Retrieves all of the posts from the 
      *
-     * @param id    The ID of the user
      * @param model The model to which post details will be added.
+     * @param request the http servlet request
      * @return The view name for displaying post details.
      */
     @GetMapping("/account")
@@ -304,6 +308,7 @@ public class HomeController {
     /**
      * Performs the update operation for a post.
      *
+     * @param id     grabbing from the url path
      * @param postModel     The updated post model.
      * @param bindingResult The result of the validation.
      * @param model         The model to which attributes will be updated.

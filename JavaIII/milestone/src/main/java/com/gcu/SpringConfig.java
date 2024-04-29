@@ -6,6 +6,10 @@ import org.springframework.context.annotation.Configuration;
 import com.gcu.business.LoginService;
 import com.gcu.business.RegistrationService;
 
+
+/**
+ * Configuration class for defining Spring beans.
+ */
 @Configuration
 public class SpringConfig 
 {

@@ -26,12 +26,27 @@ public interface PostServiceInterface
     /**
      * Updates a post.
      * @param model the post to update
+     * @param id id of the post
      * @return the updated list of posts
      */
     public boolean updatePost(PostModel model, int id);
 
+    
+	/**
+	 * Retrieves a post by its ID.
+	 *
+	 * @param id the ID of the post to retrieve
+	 * @return the post with the specified ID, or null if not found
+	 */
     public PostModel getPostById(int id);
 
+    
+    /**
+     * Deletes a post by its ID.
+     *
+     * @param id the ID of the post to delete
+     * @return true if the deletion was successful, false otherwise
+     */
     public boolean deletePost(int id);
 
     

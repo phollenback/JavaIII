@@ -21,6 +21,7 @@ import com.gcu.model.PostModel;
 @RestController
 @RequestMapping("/service")
 public class PostsRestService {
+	
     @Autowired
 	private PostServiceInterface service;
 	

@@ -29,6 +29,7 @@ public class UsersDataService implements DataAccessInterface<SignUpModel>, Users
      * Constructor to set the data source and initialize the JDBC template.
      * 
      * @param dataSource the data source to be used for database access
+     * @param usersRepository takes in the usersRepository
      */
     public UsersDataService(DataSource dataSource, UsersRepository usersRepository) {
         this.dataSource = dataSource;
@@ -113,7 +114,7 @@ public class UsersDataService implements DataAccessInterface<SignUpModel>, Users
     /**
      * Deletes an existing user in the database.
      * 
-     * @param user the user to delete
+     * @param id the id of user to delete
      * @return true if the user was deleted successfully, false otherwise
      */
     @Override

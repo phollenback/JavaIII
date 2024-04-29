@@ -170,7 +170,7 @@ public class PostEntity {
     /**
      * Sets the ID of the post.
      *
-     * @param userId The ID of the post to set.
+     * @param id The ID of the post to set.
      */
     public void setId(int id) {
         this.id = id;

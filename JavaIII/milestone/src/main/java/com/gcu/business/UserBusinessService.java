@@ -15,9 +15,17 @@ import org.springframework.stereotype.Service;
 import com.gcu.data.UsersDataService;
 import com.gcu.data.entity.UserEntity;
 
+
+/**
+ * Service class for loading user details during authentication.
+ */
 @Service
 public class UserBusinessService implements UserDetailsService {
 
+	
+	/**
+	 * Instantiates a UserDataService
+	 */
     private final UsersDataService service;
 
     /**
